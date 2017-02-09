@@ -1,0 +1,19 @@
+{
+  "name": "wappr/digitalocean",
+  "description": "A PHP DigitalOcean API Client using Guzzle",
+  "version": "0.13.0",
+  "license": "MIT",
+  "keywords": ["digitalocean", "vps"],
+  "autoload": {
+    "psr-4": {
+      "wappr\\digitalocean\\": "src/"
+    }
+  },
+  "require": {
+    "php": ">=5.6",
+    "guzzlehttp/guzzle": "~6.0"
+  },
+  "config": {
+    "sort-packages": true
+  }
+}
