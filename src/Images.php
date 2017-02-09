@@ -19,6 +19,8 @@ class Images extends Resources
      */
     protected $sender;
 
+    private $endpoint = 'images';
+
     public function listAll(ListAllImagesRequest $listAllImagesRequest)
     {
     }

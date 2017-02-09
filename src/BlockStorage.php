@@ -21,6 +21,8 @@ class BlockStorage extends Resources
      */
     protected $sender;
 
+    private $endpoint = 'volumes';
+
     public function listAll(ListAllBlockStorageRequest $listAllBlockStorageRequest)
     {
     }
