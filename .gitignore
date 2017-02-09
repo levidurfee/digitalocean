@@ -6,3 +6,4 @@ example.php
 e/*
 .php_cs.cache
 ignore/*
+.DS_store

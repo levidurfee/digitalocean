@@ -16,10 +16,21 @@ use wappr\digitalocean\Requests\Droplets\ListNeighborsDropletsRequest;
 use wappr\digitalocean\Requests\Droplets\ListSnapshotsDropletRequest;
 use wappr\digitalocean\Requests\Droplets\RetrieveDropletsRequest;
 
-class Droplets
+/**
+ * Class Droplets.
+ */
+class Droplets extends Resources
 {
+    /**
+     * @var Sender
+     */
+    protected $sender;
+
+    private $endpoint = 'droplets';
+
     public function create(CreateDropletsRequest $createDropletRequest)
     {
+        $this->sender->post($this->endpoint, $createDropletRequest);
     }
 
     public function createMultiple(CreateMultipleDropletsRequest $createMultipleDropletsRequest)
