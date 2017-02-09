@@ -10,20 +10,20 @@ use wappr\digitalocean\RequestContract;
 class CreateDropletsRequest extends RequestContract
 {
     /* required */
-    public $name;
-    public $region;
-    public $size;
-    public $images;
+    private $name;
+    private $region;
+    private $size;
+    private $images;
 
     /* optional */
-    public $ssh_keys;
-    public $backups;
-    public $ipv6;
-    public $private_networking;
-    public $user_data;
-    public $monitoring;
-    public $volume;
-    public $tags;
+    private $ssh_keys;
+    private $backups;
+    private $ipv6;
+    private $private_networking;
+    private $user_data;
+    private $monitoring;
+    private $volume;
+    private $tags;
 
     /**
      * CreateDropletsRequest constructor.
