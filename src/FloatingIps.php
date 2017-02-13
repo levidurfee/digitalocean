@@ -9,8 +9,7 @@ use wappr\digitalocean\Requests\FloatingIps\ListAllFloatingIpsRequest;
 use wappr\digitalocean\Requests\FloatingIps\RetrieveFloatingIpRequest;
 
 /**
- * Class FloatingIps
- * @package wappr\digitalocean
+ * Class FloatingIps.
  */
 class FloatingIps extends Resources
 {
@@ -21,7 +20,6 @@ class FloatingIps extends Resources
      */
     public function listAll(ListAllFloatingIpsRequest $listAllFloatingIpsRequest)
     {
-
     }
 
     /**
@@ -29,7 +27,6 @@ class FloatingIps extends Resources
      */
     public function createAttached(CreateFloatingIpAttachRequest $createFloatingIpAttachRequest)
     {
-
     }
 
     /**
@@ -37,7 +34,6 @@ class FloatingIps extends Resources
      */
     public function createReserved(CreateFloatingIpReservedRequest $createFloatingIpReservedRequest)
     {
-
     }
 
     /**
@@ -45,7 +41,6 @@ class FloatingIps extends Resources
      */
     public function retrieve(RetrieveFloatingIpRequest $retrieveFloatingIpRequest)
     {
-        
     }
 
     /**
@@ -53,6 +48,5 @@ class FloatingIps extends Resources
      */
     public function delete(DeleteFloatingIpRequest $deleteFloatingIpRequest)
     {
-
     }
 }

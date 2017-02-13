@@ -6,5 +6,4 @@ use wappr\digitalocean\RequestContract;
 
 class CreateFloatingIpReservedRequest extends RequestContract
 {
-
 }
