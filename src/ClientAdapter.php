@@ -5,7 +5,7 @@ namespace wappr\digitalocean;
 use GuzzleHttp\Client as httpClient;
 use GuzzleHttp\Exception\RequestException;
 
-class Sender
+class ClientAdapter
 {
     /**
      * @var httpClient

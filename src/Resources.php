@@ -4,9 +4,9 @@ namespace wappr\digitalocean;
 
 abstract class Resources
 {
-    protected $sender;
+    protected $clientAdapter;
     public function __construct()
     {
-        $this->sender = new Sender();
+        $this->clientAdapter = new ClientAdapter();
     }
 }

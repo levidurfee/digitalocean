@@ -17,9 +17,9 @@ use wappr\digitalocean\Requests\BlockStorage\RetrieveByNameBlockStorageRequest;
 class BlockStorage extends Resources
 {
     /**
-     * @var Sender
+     * @var ClientAdapter
      */
-    protected $sender;
+    protected $clientAdapter;
 
     private $endpoint = 'volumes';
 

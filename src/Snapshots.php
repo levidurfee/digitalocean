@@ -10,7 +10,7 @@ use wappr\digitalocean\Requests\Snapshots\RetrieveSnapshotsRequest;
 
 class Snapshots extends Resources
 {
-    protected $sender;
+    protected $clientAdapter;
 
     public function listAll(ListAllSnapshotsRequest $listAllSnapshotsRequest)
     {

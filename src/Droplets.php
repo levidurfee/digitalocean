@@ -22,15 +22,15 @@ use wappr\digitalocean\Requests\Droplets\RetrieveDropletsRequest;
 class Droplets extends Resources
 {
     /**
-     * @var Sender
+     * @var ClientAdapter
      */
-    protected $sender;
+    protected $clientAdapter;
 
     private $endpoint = 'droplets';
 
     public function create(CreateDropletsRequest $createDropletRequest)
     {
-        $this->sender->post($this->endpoint, $createDropletRequest);
+        $this->clientAdapter->post($this->endpoint, $createDropletRequest);
     }
 
     public function createMultiple(CreateMultipleDropletsRequest $createMultipleDropletsRequest)

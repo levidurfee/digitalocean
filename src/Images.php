@@ -15,9 +15,9 @@ use wappr\digitalocean\Requests\Images\UpdateImagesRequest;
 class Images extends Resources
 {
     /**
-     * @var Sender
+     * @var ClientAdapter
      */
-    protected $sender;
+    protected $clientAdapter;
 
     private $endpoint = 'images';
 
