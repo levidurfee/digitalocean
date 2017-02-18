@@ -11,21 +11,17 @@ class Domains extends Resources
 {
     public function listAll(ListAllDomainsRequest $listAllDomainsRequest)
     {
-
     }
 
     public function create(CreateDomainRequest $createDomainRequest)
     {
-
     }
 
     public function retrieve(RetrieveDomainRequest $retrieveDomainRequest)
     {
-
     }
 
     public function delete(DeleteDomainRequest $deleteDomainRequest)
     {
-
     }
 }

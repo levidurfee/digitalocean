@@ -8,6 +8,5 @@ class Regions extends Resources
 {
     public function listAll(ListAllRegionsRequest $listAllRegionsRequest)
     {
-
     }
 }

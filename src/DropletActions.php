@@ -24,86 +24,69 @@ class DropletActions extends Resources
 {
     public function enableBackups(EnableBackupsRequest $enableBackupsRequest)
     {
-
     }
 
     public function disableBackups(DisableBackupsRequest $disableBackupsRequest)
     {
-
     }
 
     public function reboot(RebootRequest $rebootRequest)
     {
-
     }
 
     public function powerCycle(PowerCycleRequest $powerCycleRequest)
     {
-
     }
 
     public function shutdown(ShutdownRequest $shutdownRequest)
     {
-
     }
 
     public function powerOff(PowerOffRequest $powerOffRequest)
     {
-
     }
 
     public function powerOn(PowerOnRequest $powerOnRequest)
     {
-
     }
 
     public function restore(RestoreRequest $restoreRequest)
     {
-
     }
 
     public function passwordReset(PasswordResetRequest $passwordResetRequest)
     {
-
     }
 
     public function resize(ResizeRequest $resizeRequest)
     {
-
     }
 
     public function rebuild(RebuildRequest $rebuildRequest)
     {
-
     }
 
     public function rename(RenameRequest $renameRequest)
     {
-
     }
 
     public function changeKernel(ChangeKernelRequest $changeKernelRequest)
     {
-
     }
 
     public function enableIPv6(EnableIPv6Request $enableIPv6Request)
     {
-
     }
 
     public function enablePrivateNetworking(EnablePrivateNetworkingRequest $enablePrivateNetworkingRequest)
     {
-
     }
 
     public function snapshot(SnapshotRequest $snapshotRequest)
     {
-
     }
 
     public function retrieve(RetrieveRequest $retrieveRequest)
     {
-
     }
 }

@@ -9,11 +9,9 @@ class Actions extends Resources
 {
     public function listAll(ListAllActionsRequest $listAllActionsRequest)
     {
-
     }
 
     public function retrieve(RetrieveActionRequest $retrieveActionRequest)
     {
-
     }
 }

@@ -12,26 +12,21 @@ class DomainRecords extends Resources
 {
     public function listAll(ListAllDomainRecordsRequest $listAllDomainRecordsRequest)
     {
-
     }
 
     public function create(CreateDomainRecordsRequest $createDomainRecordsRequest)
     {
-
     }
 
     public function retrieve(RetrieveDomainRecordsRequest $retrieveDomainRecordsRequest)
     {
-
     }
 
     public function update(UpdateDomainRecordsRequest $updateDomainRecordsRequest)
     {
-
     }
 
     public function delete(DeleteDomainRecordsRequest $deleteDomainRecordsRequest)
     {
-
     }
 }

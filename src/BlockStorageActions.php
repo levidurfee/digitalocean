@@ -11,46 +11,37 @@ use wappr\digitalocean\Requests\BlockStorageActions\ResizeVolumeRequest;
 use wappr\digitalocean\Requests\BlockStorageActions\RetrieveActionRequest;
 
 /**
- * Class BlockStorageActions
+ * Class BlockStorageActions.
  *
- * @link https://developers.digitalocean.com/documentation/v2/#block-storage-actions DigitalOcean documentation.
- *
- * @package wappr\digitalocean
+ * @link https://developers.digitalocean.com/documentation/v2/#block-storage-actions DigitalOcean documentation
  */
 class BlockStorageActions extends Resources
 {
     public function attach(AttachVolumeRequest $attachVolumeRequest)
     {
-
     }
 
     public function attachByName(AttachVolumeByNameRequest $attachVolumeByNameRequest)
     {
-
     }
 
     public function remove(RemoveVolumeRequest $removeVolumeRequest)
     {
-
     }
 
     public function removeByName(RemoveVolumeByNameRequest $removeVolumeByNameRequest)
     {
-
     }
 
     public function resize(ResizeVolumeRequest $resizeVolumeRequest)
     {
-
     }
 
     public function listAll(ListAllActionsRequest $listAllActionsRequest)
     {
-
     }
 
     public function retrieve(RetrieveActionRequest $retrieveActionRequest)
     {
-
     }
 }

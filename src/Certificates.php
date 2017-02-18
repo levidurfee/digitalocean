@@ -11,21 +11,17 @@ class Certificates extends Resources
 {
     public function create(CreateNewCertificateRequest $createNewCertificateRequest)
     {
-
     }
 
     public function listAll(ListAllCertificatesRequest $listAllCertificatesRequest)
     {
-
     }
 
     public function retrieve(RetrieveCertificateRequest $retrieveCertificateRequest)
     {
-
     }
 
     public function delete(DeleteCertificateRequest $deleteCertificateRequest)
     {
-
     }
 }
