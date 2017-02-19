@@ -7,7 +7,14 @@ use wappr\digitalocean\Requests\Actions\RetrieveActionRequest;
 
 class Actions extends Resources
 {
+    /**
+     * @var ClientAdapter
+     */
     protected $clientAdapter;
+
+    /**
+     * @var string
+     */
     private $endpoint = 'actions';
 
     /**
@@ -20,6 +27,11 @@ class Actions extends Resources
         return $this->clientAdapter->get($this->endpoint, $listAllActionsRequest);
     }
 
+    /**
+     * @param RetrieveActionRequest $retrieveActionRequest
+     *
+     * @return \Psr\Http\Message\ResponseInterface
+     */
     public function retrieve(RetrieveActionRequest $retrieveActionRequest)
     {
         return $this->clientAdapter->get($this->endpoint.'/'.$retrieveActionRequest->action_id, $retrieveActionRequest);
