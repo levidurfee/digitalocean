@@ -1,0 +1,9 @@
+<?php
+
+namespace wappr\digitalocean\Requests\Tags;
+
+use wappr\digitalocean\RequestContract;
+
+class RetrieveTagRequest extends RequestContract
+{
+}
