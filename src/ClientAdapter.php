@@ -2,15 +2,15 @@
 
 namespace wappr\digitalocean;
 
-use GuzzleHttp\Client as httpClient;
+use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 
 class ClientAdapter
 {
     /**
-     * @var httpClient
+     * @var client
      */
-    public $httpClient;
+    public $client;
 
     /**
      * @var bool
@@ -42,7 +42,7 @@ class ClientAdapter
      */
     public function __construct()
     {
-        $this->httpClient = new httpClient(['base_uri' => $this->apiUrl.'/v'.$this->apiVersion.'/']);
+        $this->client = new Client(['base_uri' => $this->apiUrl.'/v'.$this->apiVersion.'/']);
 
         $this->apiToken = getenv('DO_API_TOKEN');
     }
@@ -65,7 +65,7 @@ class ClientAdapter
         ];
 
         try {
-            $response = $this->httpClient->request('POST', $endpoint, $request);
+            $response = $this->client->request('POST', $endpoint, $request);
         } catch (RequestException $e) {
             $response = $e->getResponse();
         }
@@ -96,7 +96,7 @@ class ClientAdapter
         ];
 
         try {
-            $response = $this->httpClient->request('GET', $endpoint, $request);
+            $response = $this->client->request('GET', $endpoint, $request);
         } catch (RequestException $e) {
             $response = $e->getResponse();
         }
@@ -125,7 +125,7 @@ class ClientAdapter
         ];
 
         try {
-            $response = $this->httpClient->request('DELETE', $endpoint, $request);
+            $response = $this->client->request('DELETE', $endpoint, $request);
         } catch (RequestException $e) {
             $response = $e->getResponse();
         }
