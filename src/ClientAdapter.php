@@ -39,11 +39,12 @@ class ClientAdapter
 
     /**
      * ClientAdapter constructor.
+     *
      * @param Client|null $client
      */
     public function __construct(Client $client = null)
     {
-        if(is_null($client)) {
+        if (is_null($client)) {
             $this->client = new Client(['base_uri' => $this->apiUrl.'/v'.$this->apiVersion.'/']);
         } else {
             $this->client = $client;
