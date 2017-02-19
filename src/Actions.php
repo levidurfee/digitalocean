@@ -10,6 +10,11 @@ class Actions extends Resources
     protected $clientAdapter;
     private $endpoint = 'actions';
 
+    /**
+     * @param ListAllActionsRequest $listAllActionsRequest
+     *
+     * @return \Psr\Http\Message\ResponseInterface
+     */
     public function listAll(ListAllActionsRequest $listAllActionsRequest)
     {
         return $this->clientAdapter->get($this->endpoint, $listAllActionsRequest);
