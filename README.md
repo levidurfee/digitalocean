@@ -10,5 +10,3 @@ A [DigitalOcean](https://m.do.co/c/97ced4f9088d) PHP client that uses [Guzzle](h
 * [Documentation](https://digitalocean.wappr.co/en/latest/)
 * [Issues](https://github.com/wappr/digitalocean/issues)
 * [Contributing](https://github.com/wappr/digitalocean/blob/master/CONTRIBUTING.md)
-
-[DigitalOcean API documentation.](https://developers.digitalocean.com/documentation/v2/)
