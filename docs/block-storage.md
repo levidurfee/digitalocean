@@ -1,5 +1,7 @@
 # Block Storage
 
+[DigitalOcean's docs on BlockStorage](https://developers.digitalocean.com/documentation/v2/#block-storage).
+
 ## List all Volumes
 
 List all the volumes associated with the account.
@@ -47,7 +49,3 @@ var_dump($result->getStatusCode()); // 200
 | `description`    | Description of Volume       | string |          |
 | `region`         | Region of of Volume         | string |          |
 | `snapshot_id`    | Create Volume from Snapshot | string |          |
-
-## Additional docs
-
-[DigitalOcean's docs on BlockStorage](https://developers.digitalocean.com/documentation/v2/#block-storage)
