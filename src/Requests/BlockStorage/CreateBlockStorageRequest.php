@@ -15,8 +15,8 @@ use wappr\digitalocean\RequestContract;
  */
 class CreateBlockStorageRequest extends RequestContract
 {
-    protected $size_gigabytes;
-    protected $name;
+    public $size_gigabytes;
+    public $name;
 
     public function __construct($size_gigabytes, $name)
     {
