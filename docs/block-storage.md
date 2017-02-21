@@ -49,3 +49,21 @@ var_dump($result->getStatusCode()); // 200
 | `description`    | Description of Volume       | string |          |
 | `region`         | Region of of Volume         | string |          |
 | `snapshot_id`    | Create Volume from Snapshot | string |          |
+
+## Retrieve an existing volume
+
+Get information about an existing block storage volume.
+
+```php
+<?php
+
+use wappr\digitalocean\BlockStorage;
+use wappr\digitalocean\Requests\BlockStorage\RetrieveBlockStorageRequest;
+
+include '../vendor/autoload.php';
+
+$blockStorage = new BlockStorage;
+$retrieve = new RetrieveBlockStorageRequest('1234');
+$result = $blockStorage->retrieve($retrieve);
+var_dump($result->getStatusCode()); // 200
+```
