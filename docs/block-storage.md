@@ -38,6 +38,16 @@ $result = $blockStorage->create(new CreateBlockStorageRequest(100, 'test'));
 var_dump($result->getStatusCode()); // 200
 ```
 
+### CreateBlockStorageRequest properties
+
+| Name             | Description                 | Type   | Required |
+|------------------|-----------------------------|--------|----------|
+| `size_gigabytes` | Size in gigabytes           | int    | *        |
+| `name`           | Name of BlockStorage        | string | *        |
+| `description`    | Description of Volume       | string |          |
+| `region`         | Region of of Volume         | string |          |
+| `snapshot_id`    | Create Volume from Snapshot | string |          |
+
 ## Additional docs
 
 [DigitalOcean's docs on BlockStorage](https://developers.digitalocean.com/documentation/v2/#block-storage)
