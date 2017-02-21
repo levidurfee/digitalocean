@@ -38,8 +38,14 @@ class BlockStorage extends Resources
         return $this->clientAdapter->get($this->endpoint, $listAllBlockStorageRequest);
     }
 
+    /**
+     * @param CreateBlockStorageRequest $createBlockStorageRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function create(CreateBlockStorageRequest $createBlockStorageRequest)
     {
+        return $this->clientAdapter->post($this->endpoint, $createBlockStorageRequest);
     }
 
     public function retrieve(RetrieveBlockStorageRequest $retrieveBlockStorageRequest)

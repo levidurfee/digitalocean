@@ -6,6 +6,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
+use wappr\digitalocean\Requests\BlockStorage\CreateBlockStorageRequest;
 use wappr\digitalocean\Requests\BlockStorage\ListAllBlockStorageRequest;
 
 class BlockStorageTest extends \PHPUnit_Framework_TestCase
@@ -26,6 +27,14 @@ class BlockStorageTest extends \PHPUnit_Framework_TestCase
         $listAll = new ListAllBlockStorageRequest;
         $blockStorage = new BlockStorage($this->client);
         $result = $blockStorage->listAll($listAll);
+        $this->assertEquals($result->getStatusCode(), 200);
+    }
+
+    public function testCreate()
+    {
+        $create = new CreateBlockStorageRequest(100, 'test');
+        $blockStorage = new BlockStorage($this->client);
+        $result = $blockStorage->create($create);
         $this->assertEquals($result->getStatusCode(), 200);
     }
 }
