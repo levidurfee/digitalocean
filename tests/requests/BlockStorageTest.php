@@ -63,6 +63,6 @@ class BlockStorageTest extends \PHPUnit_Framework_TestCase
      */
     public function testRetrieveByNameRegionException()
     {
-        $retrieve = new RetrieveByNameBlockStorageRequest('name', 'New York');
+        new RetrieveByNameBlockStorageRequest('name', 'New York');
     }
 }
