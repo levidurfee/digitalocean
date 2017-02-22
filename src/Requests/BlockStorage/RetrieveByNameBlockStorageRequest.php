@@ -10,9 +10,15 @@ class RetrieveByNameBlockStorageRequest extends RequestContract
     public $name;
     public $region;
 
+    /**
+     * RetrieveByNameBlockStorageRequest constructor.
+     *
+     * @param $name
+     * @param $region
+     */
     public function __construct($name, $region)
     {
-        if(!RegionsHelper::check($region)) {
+        if (!RegionsHelper::check($region)) {
             throw new \InvalidArgumentException('Region must be a slug.', 200);
         }
         $this->name = $name;
