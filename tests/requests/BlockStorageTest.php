@@ -9,6 +9,7 @@ use GuzzleHttp\Psr7\Response;
 use wappr\digitalocean\Requests\BlockStorage\CreateBlockStorageRequest;
 use wappr\digitalocean\Requests\BlockStorage\ListAllBlockStorageRequest;
 use wappr\digitalocean\Requests\BlockStorage\RetrieveBlockStorageRequest;
+use wappr\digitalocean\Requests\BlockStorage\RetrieveByNameBlockStorageRequest;
 
 class BlockStorageTest extends \PHPUnit_Framework_TestCase
 {
@@ -45,5 +46,23 @@ class BlockStorageTest extends \PHPUnit_Framework_TestCase
         $blockStorage = new BlockStorage($this->client);
         $result = $blockStorage->retrieve($retrieve);
         $this->assertEquals($result->getStatusCode(), 200);
+    }
+
+    public function testRetrieveByName()
+    {
+        $retrieve = new RetrieveByNameBlockStorageRequest('name', 'nyc1');
+        $blockStorage = new BlockStorage($this->client);
+        $result = $blockStorage->retrieveByName($retrieve);
+        $this->assertEquals($result->getStatusCode(), 200);
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Region must be a slug.
+     * @expectedExceptionCode 200
+     */
+    public function testRetrieveByNameRegionException()
+    {
+        $retrieve = new RetrieveByNameBlockStorageRequest('name', 'New York');
     }
 }

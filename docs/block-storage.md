@@ -54,6 +54,8 @@ var_dump($result->getStatusCode()); // 200
 
 Get information about an existing block storage volume.
 
+### Example Usage
+
 ```php
 <?php
 
@@ -67,3 +69,41 @@ $retrieve = new RetrieveBlockStorageRequest('1234');
 $result = $blockStorage->retrieve($retrieve);
 var_dump($result->getStatusCode()); // 200
 ```
+
+### RetrieveBlockStorageRequest properties
+
+| Name             | Description                 | Type   | Required |
+|------------------|-----------------------------|--------|----------|
+| `volume_id`      | BlockStorage volume id      | string | *        |
+
+## Retrieve an existing volume by name
+
+Retrieve BlockStorage by name and region.
+
+### Example Usage
+
+```php
+<?php
+
+use wappr\digitalocean\BlockStorage;
+use wappr\digitalocean\Requests\BlockStorage\RetrieveByNameBlockStorageRequest;
+
+include '../vendor/autoload.php';
+
+$blockStorage = new BlockStorage;
+$retrieve = new RetrieveByNameBlockStorageRequest('name', 'nyc2');
+$result = $blockStorage->retrieveByName($retrieve);
+var_dump($result->getStatusCode()); // 200
+```
+
+### RetrieveBlockStorageRequest properties
+
+| Name             | Description                 | Type   | Required |
+|------------------|-----------------------------|--------|----------|
+| `name`           | Name of volume              | string | *        |
+| `region`         | One of the existing regions | string | *        |
+
+
+### Throws
+
+Will throw `InvalidArgumentException` is the region does not exist in the `RegionsHelper` class.
