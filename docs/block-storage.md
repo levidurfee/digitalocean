@@ -107,3 +107,29 @@ var_dump($result->getStatusCode()); // 200
 ### Throws
 
 Will throw `InvalidArgumentException` is the region does not exist in the `RegionsHelper` class.
+
+## List snapshots for volume
+
+Retrieve information about snapshots for a specific block storage volume.
+
+### Example Usage
+
+```php
+<?php
+
+use wappr\digitalocean\BlockStorage;
+use wappr\digitalocean\Requests\BlockStorage\ListSnapshotsBlockStorageRequest;
+
+include '../vendor/autoload.php';
+
+$blockStorage = new BlockStorage;
+$request = new ListSnapshotsBlockStorageRequest(1234);
+$result = $blockStorage->listSnapshots($request);
+var_dump($result->getStatusCode()); // 200
+```
+
+### ListSnapshotsBlockStorageRequest properties
+
+| Name             | Description                 | Type   | Required |
+|------------------|-----------------------------|--------|----------|
+| `volume_id`      | BlockStorage volume id      | string | *        |

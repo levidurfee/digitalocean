@@ -8,6 +8,7 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use wappr\digitalocean\Requests\BlockStorage\CreateBlockStorageRequest;
 use wappr\digitalocean\Requests\BlockStorage\ListAllBlockStorageRequest;
+use wappr\digitalocean\Requests\BlockStorage\ListSnapshotsBlockStorageRequest;
 use wappr\digitalocean\Requests\BlockStorage\RetrieveBlockStorageRequest;
 use wappr\digitalocean\Requests\BlockStorage\RetrieveByNameBlockStorageRequest;
 
@@ -69,5 +70,13 @@ class BlockStorageTest extends \PHPUnit_Framework_TestCase
     public function testRetrieveByNameRegionException()
     {
         new RetrieveByNameBlockStorageRequest('name', 'New York');
+    }
+
+    public function testListSnapshots()
+    {
+        $request = new ListSnapshotsBlockStorageRequest(1234);
+        $blockStorage = new BlockStorage($this->client);
+        $result = $blockStorage->listSnapshots($request);
+        $this->assertEquals($result->getStatusCode(), 200);
     }
 }
