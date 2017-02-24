@@ -6,6 +6,15 @@ use wappr\digitalocean\RequestContract;
 
 /**
  * Class CreateDropletsRequest.
+ *
+ * @property array $ssh_keys
+ * @property bool $backups
+ * @property bool $ipv6
+ * @property bool $private_networking
+ * @property string $user_data
+ * @property bool $monitoring
+ * @property string $volume
+ * @property array $tags
  */
 class CreateDropletsRequest extends RequestContract
 {
@@ -15,23 +24,13 @@ class CreateDropletsRequest extends RequestContract
     public $size;
     public $images;
 
-    /* optional */
-    public $ssh_keys;
-    public $backups;
-    public $ipv6;
-    public $private_networking;
-    public $user_data;
-    public $monitoring;
-    public $volume;
-    public $tags;
-
     /**
      * CreateDropletsRequest constructor.
      *
-     * @param $name
-     * @param $region
-     * @param $size
-     * @param $images
+     * @param string $name
+     * @param string $region
+     * @param string $size
+     * @param string $images
      */
     public function __construct($name, $region, $size, $images)
     {
