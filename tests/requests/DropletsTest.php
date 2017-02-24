@@ -57,7 +57,7 @@ class DropletsTest extends \PHPUnit_Framework_TestCase
     /**
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage Must be a proper size.
-     * @expectedExceptionCode 900
+     * @expectedExceptionCode 800
      */
     public function testCreateDropletSizeException()
     {

@@ -44,7 +44,7 @@ class CreateDropletsRequest extends RequestContract
         }
 
         if (!DropletsHelper::checkSizes($size)) {
-            throw new \InvalidArgumentException('Must be a proper size.', 900);
+            throw new \InvalidArgumentException('Must be a proper size.', 800);
         }
 
         $this->name = $name;

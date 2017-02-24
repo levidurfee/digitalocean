@@ -37,3 +37,26 @@ $request->private_networking = true;
 $request->monitoring = true;
 $result = $droplets->create($request);
 ```
+
+## Exception codes
+
+| Level | Class               |
+|-----------------------------|
+| 100   | Actions             |
+| 200   | BlockStorage        |
+| 300   | BlockStorageActions |
+| 400   | Certificates        |
+| 500   | DomainRecords       |
+| 600   | Domains             |
+| 700   | DropletActions      |
+| 800   | Droplets            |
+| 900   | FloatingIpActions   |
+| 1000  | FloatingIps         |
+| 1100  | ImageActions        |
+| 1200  | Images              |
+| 1300  | LoadBalancers       |
+| 1400  | Regions             |
+| 1500  | Sizes               |
+| 1600  | Snapshots           |
+| 1700  | SshKeys             |
+| 1800  | Tags                |
