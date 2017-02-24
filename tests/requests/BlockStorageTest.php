@@ -13,7 +13,15 @@ use wappr\digitalocean\Requests\BlockStorage\RetrieveByNameBlockStorageRequest;
 
 class BlockStorageTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var Client
+     */
     protected $client;
+    
+    /**
+     * @var BlockStorage
+     */
+    protected $blockStorage;
 
     public function setUp()
     {
@@ -22,37 +30,34 @@ class BlockStorageTest extends \PHPUnit_Framework_TestCase
         ]);
         $handler = HandlerStack::create($mock);
         $this->client = new Client(['handler' => $handler]);
+        $this->blockStorage = new BlockStorage($this->client);
     }
 
     public function testListAll()
     {
         $listAll = new ListAllBlockStorageRequest;
-        $blockStorage = new BlockStorage($this->client);
-        $result = $blockStorage->listAll($listAll);
+        $result = $this->blockStorage->listAll($listAll);
         $this->assertEquals($result->getStatusCode(), 200);
     }
 
     public function testCreate()
     {
         $create = new CreateBlockStorageRequest(100, 'test');
-        $blockStorage = new BlockStorage($this->client);
-        $result = $blockStorage->create($create);
+        $result = $this->blockStorage->create($create);
         $this->assertEquals($result->getStatusCode(), 200);
     }
 
     public function testRetrieve()
     {
         $retrieve = new RetrieveBlockStorageRequest('1234');
-        $blockStorage = new BlockStorage($this->client);
-        $result = $blockStorage->retrieve($retrieve);
+        $result = $this->blockStorage->retrieve($retrieve);
         $this->assertEquals($result->getStatusCode(), 200);
     }
 
     public function testRetrieveByName()
     {
         $retrieve = new RetrieveByNameBlockStorageRequest('name', 'nyc1');
-        $blockStorage = new BlockStorage($this->client);
-        $result = $blockStorage->retrieveByName($retrieve);
+        $result = $this->blockStorage->retrieveByName($retrieve);
         $this->assertEquals($result->getStatusCode(), 200);
     }
 
