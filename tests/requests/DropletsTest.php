@@ -40,7 +40,8 @@ class DropletsTest extends \PHPUnit_Framework_TestCase
 
         foreach ($requests as $request) {
             $createDroplet = new CreateDropletsRequest($request[0], $request[1], $request[2], $request[3]);
-            $this->droplets->create($createDroplet);
+            $response = $this->droplets->create($createDroplet);
+            $this->assertEquals($response->getStatusCode(), 200);
         }
     }
 

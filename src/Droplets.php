@@ -30,7 +30,7 @@ class Droplets extends Resources
 
     public function create(CreateDropletsRequest $createDropletRequest)
     {
-        $this->clientAdapter->post($this->endpoint, $createDropletRequest);
+        return $this->clientAdapter->post($this->endpoint, $createDropletRequest);
     }
 
     public function createMultiple(CreateMultipleDropletsRequest $createMultipleDropletsRequest)
