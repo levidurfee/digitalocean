@@ -11,7 +11,15 @@ use wappr\digitalocean\Requests\Actions\RetrieveActionRequest;
 
 class ActionsTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var Client
+     */
     protected $client;
+
+    /**
+     * @var Actions
+     */
+    protected $actions;
 
     public function setUp()
     {
@@ -20,21 +28,21 @@ class ActionsTest extends \PHPUnit_Framework_TestCase
         ]);
         $handler = HandlerStack::create($mock);
         $this->client = new Client(['handler' => $handler]);
+        $this->actions = new Actions($this->client);
     }
 
     public function testListAll()
     {
         $listAll = new ListAllActionsRequest;
-        $actions = new Actions($this->client);
-        $result = $actions->listAll($listAll);
+
+        $result = $this->actions->listAll($listAll);
         $this->assertEquals($result->getStatusCode(), 200);
     }
 
     public function testRetrieve()
     {
         $retrieve = new RetrieveActionRequest(1234);
-        $action = new Actions($this->client);
-        $result = $action->retrieve($retrieve);
+        $result = $this->actions->retrieve($retrieve);
         $this->assertEquals($result->getStatusCode(), 200);
     }
 }

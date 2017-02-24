@@ -17,7 +17,7 @@ class BlockStorageTest extends \PHPUnit_Framework_TestCase
      * @var Client
      */
     protected $client;
-    
+
     /**
      * @var BlockStorage
      */
