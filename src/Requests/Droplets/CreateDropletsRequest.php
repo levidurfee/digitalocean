@@ -2,6 +2,8 @@
 
 namespace wappr\digitalocean\Requests\Droplets;
 
+use wappr\digitalocean\Droplets;
+use wappr\digitalocean\Helpers\DropletsHelper;
 use wappr\digitalocean\Helpers\RegionsHelper;
 use wappr\digitalocean\RequestContract;
 
@@ -39,6 +41,10 @@ class CreateDropletsRequest extends RequestContract
     {
         if (!RegionsHelper::check($region)) {
             throw new \InvalidArgumentException('Region must be a slug.', 200);
+        }
+
+        if (!DropletsHelper::checkSizes($size)) {
+            throw new \InvalidArgumentException('Must be a proper size.', 900);
         }
 
         $this->name = $name;
