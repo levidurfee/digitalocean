@@ -53,4 +53,14 @@ class DropletsTest extends \PHPUnit_Framework_TestCase
     {
         new CreateDropletsRequest('name', 'fail', '512mb', 'ubuntu');
     }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Must be a proper size.
+     * @expectedExceptionCode 900
+     */
+    public function testCreateDropletSizeException()
+    {
+        new CreateDropletsRequest('name', 'nyc2', '1', 'ubuntu');
+    }
 }
