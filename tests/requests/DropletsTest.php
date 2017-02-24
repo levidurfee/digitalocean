@@ -35,10 +35,10 @@ class DropletsTest extends \PHPUnit_Framework_TestCase
     {
         $requests = [
             ['name', 'nyc1', '1gb', 'images'],
-            ['name2', 'nyc2', '512mb', 'ubuntu']
+            ['name2', 'nyc2', '512mb', 'ubuntu'],
         ];
 
-        foreach($requests as $request) {
+        foreach ($requests as $request) {
             $createDroplet = new CreateDropletsRequest($request[0], $request[1], $request[2], $request[3]);
             $this->droplets->create($createDroplet);
         }

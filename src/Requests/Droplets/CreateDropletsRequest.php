@@ -2,7 +2,6 @@
 
 namespace wappr\digitalocean\Requests\Droplets;
 
-use wappr\digitalocean\Droplets;
 use wappr\digitalocean\Helpers\DropletsHelper;
 use wappr\digitalocean\Helpers\RegionsHelper;
 use wappr\digitalocean\RequestContract;

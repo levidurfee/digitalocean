@@ -9,8 +9,8 @@ class DropletsHelper
     const SIZE_1GB = '1gb';
 
     public static $sizes = [
-        DropletsHelper::SIZE_512,
-        DropletsHelper::SIZE_1GB,
+        self::SIZE_512,
+        self::SIZE_1GB,
     ];
 
     /* images */
