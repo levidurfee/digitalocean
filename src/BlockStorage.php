@@ -82,8 +82,16 @@ class BlockStorage extends Resources
         return $this->clientAdapter->get($this->endpoint.'/'.$listSnapshotsBlockStorageRequest->volume_id.'/snapshots', $listSnapshotsBlockStorageRequest);
     }
 
+    /**
+     * Create a new snapshot of a volume and give it a name.
+     *
+     * @param CreateSnapshotBlockStorageRequest $createSnapshotBlockStorageRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function createSnapshot(CreateSnapshotBlockStorageRequest $createSnapshotBlockStorageRequest)
     {
+        return $this->clientAdapter->post($this->endpoint.'/'.$createSnapshotBlockStorageRequest->volume_id.'/snapshots', $createSnapshotBlockStorageRequest);
     }
 
     public function delete(DeleteBlockStorageRequest $deleteBlockStorageRequest)
