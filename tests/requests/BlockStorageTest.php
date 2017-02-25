@@ -7,6 +7,7 @@ use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use wappr\digitalocean\Requests\BlockStorage\CreateBlockStorageRequest;
+use wappr\digitalocean\Requests\BlockStorage\CreateSnapshotBlockStorageRequest;
 use wappr\digitalocean\Requests\BlockStorage\ListAllBlockStorageRequest;
 use wappr\digitalocean\Requests\BlockStorage\ListSnapshotsBlockStorageRequest;
 use wappr\digitalocean\Requests\BlockStorage\RetrieveBlockStorageRequest;
@@ -77,6 +78,13 @@ class BlockStorageTest extends \PHPUnit_Framework_TestCase
         $request = new ListSnapshotsBlockStorageRequest(1234);
         $blockStorage = new BlockStorage($this->client);
         $result = $blockStorage->listSnapshots($request);
+        $this->assertEquals($result->getStatusCode(), 200);
+    }
+
+    public function testCreateSnapshot()
+    {
+        $request = new CreateSnapshotBlockStorageRequest(12345, 'thesnapshot');
+        $result = $this->blockStorage->createSnapshot($request);
         $this->assertEquals($result->getStatusCode(), 200);
     }
 }
