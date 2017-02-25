@@ -133,3 +133,30 @@ var_dump($result->getStatusCode()); // 200
 | Name             | Description                 | Type   | Required |
 |------------------|-----------------------------|--------|----------|
 | `volume_id`      | BlockStorage volume id      | string | *        |
+
+## Create snapshot of volume
+
+Create a snapshot of a block storage volume.
+
+### Example Usage
+
+```php
+<?php
+
+use wappr\digitalocean\BlockStorage;
+use wappr\digitalocean\Requests\BlockStorage\CreateSnapshotBlockStorageRequest;
+
+include '../vendor/autoload.php';
+
+$blockStorage = new BlockStorage;
+$request = new CreateSnapshotBlockStorageRequest(1234, 'thesnap');
+$result = $blockStorage->createSnapshot($request);
+var_dump($result->getStatusCode()); // 200
+```
+
+### CreateSnapshotBlockStorageRequest properties
+
+| Name             | Description                 | Type   | Required |
+|------------------|-----------------------------|--------|----------|
+| `volume_id`      | BlockStorage volume id      | string | *        |
+| `name`           | Name of the snapshot        | string | *        |
