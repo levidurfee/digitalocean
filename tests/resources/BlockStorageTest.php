@@ -39,11 +39,10 @@ class BlockStorageTest extends \PHPUnit_Framework_TestCase
 
     public function testBlockStorage()
     {
-        foreach($this->statusCodes as $code) {
+        foreach ($this->statusCodes as $code) {
             $request = new CreateBlockStorageRequest(100, 'test');
             $result = $this->blockStorage->create($request);
             $this->assertEquals($result->getStatusCode(), $code);
         }
-
     }
 }
