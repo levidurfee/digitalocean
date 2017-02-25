@@ -8,6 +8,7 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use wappr\digitalocean\Requests\BlockStorage\CreateBlockStorageRequest;
 use wappr\digitalocean\Requests\BlockStorage\CreateSnapshotBlockStorageRequest;
+use wappr\digitalocean\Requests\BlockStorage\DeleteBlockStorageRequest;
 use wappr\digitalocean\Requests\BlockStorage\ListAllBlockStorageRequest;
 use wappr\digitalocean\Requests\BlockStorage\ListSnapshotsBlockStorageRequest;
 use wappr\digitalocean\Requests\BlockStorage\RetrieveBlockStorageRequest;
@@ -29,6 +30,7 @@ class BlockStorageTest extends \PHPUnit_Framework_TestCase
     {
         $mock = new MockHandler([
             new Response(200, ['X-Foo' => 'Bar']),
+            new Response(204, []),
         ]);
         $handler = HandlerStack::create($mock);
         $this->client = new Client(['handler' => $handler]);
@@ -86,5 +88,15 @@ class BlockStorageTest extends \PHPUnit_Framework_TestCase
         $request = new CreateSnapshotBlockStorageRequest(12345, 'thesnapshot');
         $result = $this->blockStorage->createSnapshot($request);
         $this->assertEquals($result->getStatusCode(), 200);
+    }
+
+    public function testDelete()
+    {
+        $create = new CreateBlockStorageRequest(100, 'test');
+        $result = $this->blockStorage->create($create);
+        $this->assertEquals($result->getStatusCode(), 200);
+        $delete = new DeleteBlockStorageRequest(1234);
+        $result = $this->blockStorage->delete($delete);
+        $this->assertEquals($result->getStatusCode(), 204);
     }
 }

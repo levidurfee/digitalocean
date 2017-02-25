@@ -160,3 +160,27 @@ var_dump($result->getStatusCode()); // 200
 |------------------|-----------------------------|--------|----------|
 | `volume_id`      | BlockStorage volume id      | string | *        |
 | `name`           | Name of the snapshot        | string | *        |
+
+## Delete a volume
+
+## Example Usage
+
+```php
+<?php
+
+use wappr\digitalocean\BlockStorage;
+use wappr\digitalocean\Requests\BlockStorage\DeleteBlockStorageRequest;
+
+include '../vendor/autoload.php';
+
+$blockStorage = new BlockStorage;
+$request = new DeleteBlockStorageRequest(1234);
+$result = $blockStorage->delete($request);
+var_dump($result->getStatusCode()); // 200
+```
+
+### DeleteBlockStorageRequest properties
+
+| Name             | Description                 | Type   | Required |
+|------------------|-----------------------------|--------|----------|
+| `volume_id`      | BlockStorage volume id      | string | *        |
