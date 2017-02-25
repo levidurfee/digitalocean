@@ -13,5 +13,8 @@
         <testsuite name="requests">
             <directory suffix="Test.php">./tests/requests</directory>
         </testsuite>
+        <testsuite name="resources">
+            <directory suffix="Test.php">./tests/resources</directory>
+        </testsuite>
     </testsuites>
 </phpunit>
