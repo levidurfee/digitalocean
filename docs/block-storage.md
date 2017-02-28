@@ -184,3 +184,36 @@ var_dump($result->getStatusCode()); // 200
 | Name             | Description                 | Type   | Required |
 |------------------|-----------------------------|--------|----------|
 | `volume_id`      | BlockStorage volume id      | string | *        |
+
+## Delete a volume by name
+
+Delete a volume using the name and region.
+
+**Region must be an actual slug or it will throw an InvalidArgumentException**
+
+## Example Usage
+
+```php
+<?php
+
+use wappr\digitalocean\BlockStorage;
+use wappr\digitalocean\Requests\BlockStorage\DeleteByNameBlockStorageRequest;
+
+include '../vendor/autoload.php';
+
+$blockStorage = new BlockStorage;
+$request = new DeleteByNameBlockStorageRequest('name', 'nyc1');
+$result = $blockStorage->deleteByName($request);
+var_dump($result->getStatusCode()); // 204
+```
+
+### DeleteBlockStorageRequest properties
+
+| Name             | Description                 | Type   | Required |
+|------------------|-----------------------------|--------|----------|
+| `name`           | Name of the volume          | string | *        |
+| `region`         | Region of the volume        | string | *        |
+
+### Throws
+
+Will throw `InvalidArgumentException` is the region does not exist in the `RegionsHelper` class.
