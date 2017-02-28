@@ -163,7 +163,7 @@ var_dump($result->getStatusCode()); // 200
 
 ## Delete a volume
 
-## Example Usage
+### Example Usage
 
 ```php
 <?php
@@ -191,7 +191,7 @@ Delete a volume using the name and region.
 
 **Region must be an actual slug or it will throw an InvalidArgumentException**
 
-## Example Usage
+### Example Usage
 
 ```php
 <?php

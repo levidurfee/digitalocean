@@ -41,7 +41,7 @@ $result = $droplets->create($request);
 ## Exception codes
 
 | Level | Class               |
-|-----------------------------|
+|-------|---------------------|
 | 100   | Actions             |
 | 200   | BlockStorage        |
 | 300   | BlockStorageActions |
