@@ -9,6 +9,7 @@ use GuzzleHttp\Psr7\Response;
 use wappr\digitalocean\Requests\BlockStorage\CreateBlockStorageRequest;
 use wappr\digitalocean\Requests\BlockStorage\CreateSnapshotBlockStorageRequest;
 use wappr\digitalocean\Requests\BlockStorage\DeleteBlockStorageRequest;
+use wappr\digitalocean\Requests\BlockStorage\DeleteByNameBlockStorageRequest;
 use wappr\digitalocean\Requests\BlockStorage\ListAllBlockStorageRequest;
 use wappr\digitalocean\Requests\BlockStorage\ListSnapshotsBlockStorageRequest;
 use wappr\digitalocean\Requests\BlockStorage\RetrieveBlockStorageRequest;
@@ -98,5 +99,25 @@ class BlockStorageTest extends \PHPUnit_Framework_TestCase
         $delete = new DeleteBlockStorageRequest(1234);
         $result = $this->blockStorage->delete($delete);
         $this->assertEquals($result->getStatusCode(), 204);
+    }
+
+    public function testDeleteByName()
+    {
+        $create = new CreateBlockStorageRequest(100, 'test');
+        $result = $this->blockStorage->create($create);
+        $this->assertEquals($result->getStatusCode(), 200);
+        $delete = new DeleteByNameBlockStorageRequest('name', 'nyc1');
+        $result = $this->blockStorage->deleteByName($delete);
+        $this->assertEquals($result->getStatusCode(), 204);
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Region must be a slug.
+     * @expectedExceptionCode 200
+     */
+    public function testDeleteByNameException()
+    {
+        new DeleteByNameBlockStorageRequest('name', 'New York');
     }
 }

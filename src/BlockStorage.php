@@ -106,7 +106,15 @@ class BlockStorage extends Resources
         return $this->clientAdapter->delete($this->endpoint.'/'.$deleteBlockStorageRequest->volume_id, $deleteBlockStorageRequest);
     }
 
+    /**
+     * Delete a volume by the name and region.
+     *
+     * @param DeleteByNameBlockStorageRequest $deleteByNameBlockStorageRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function deleteByName(DeleteByNameBlockStorageRequest $deleteByNameBlockStorageRequest)
     {
+        return $this->clientAdapter->delete($this->endpoint, $deleteByNameBlockStorageRequest);
     }
 }
