@@ -34,8 +34,16 @@ class BlockStorageActions extends Resources
         return $this->clientAdapter->post($this->endpoint.'/'.$attachVolumeRequest->volume_id.'/actions', $attachVolumeRequest);
     }
 
+    /**
+     * Attach a volume to a droplet using the volume's name.
+     *
+     * @param AttachVolumeByNameRequest $attachVolumeByNameRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function attachByName(AttachVolumeByNameRequest $attachVolumeByNameRequest)
     {
+        return $this->clientAdapter->post($this->endpoint.'/actions', $attachVolumeByNameRequest);
     }
 
     public function remove(RemoveVolumeRequest $removeVolumeRequest)

@@ -6,6 +6,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
+use wappr\digitalocean\Requests\BlockStorageActions\AttachVolumeByNameRequest;
 use wappr\digitalocean\Requests\BlockStorageActions\AttachVolumeRequest;
 
 class BlockStorageActionsTest extends \PHPUnit_Framework_TestCase
@@ -49,5 +50,24 @@ class BlockStorageActionsTest extends \PHPUnit_Framework_TestCase
     {
         $request = new AttachVolumeRequest('1234', 1234);
         $request->setRegion('new york');
+    }
+
+    public function testAttachVolumeByNameRequest()
+    {
+        $request = new AttachVolumeByNameRequest('name', 1234);
+        $request->setRegion('nyc1');
+        $result = $this->blockStorageActions->attachByName($request);
+        $this->assertEquals($result->getStatusCode(), 200);
+        $this->assertInstanceOf(Response::class, $result);
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Region must be a slug.
+     * @expectedExceptionCode 200
+     */
+    public function testAttachVolumeByNameRequestRegionException()
+    {
+        (new AttachVolumeByNameRequest('1234', 1234))->setRegion('new york');
     }
 }
