@@ -25,6 +25,8 @@ class BlockStorageActions extends Resources
     protected $endpoint = 'volumes';
 
     /**
+     * Attach a volume to a droplet using the volume's ID.
+     *
      * @param AttachVolumeRequest $attachVolumeRequest
      *
      * @return mixed|null|\Psr\Http\Message\ResponseInterface
