@@ -17,8 +17,21 @@ use wappr\digitalocean\Requests\BlockStorageActions\RetrieveActionRequest;
  */
 class BlockStorageActions extends Resources
 {
+    /**
+     * @var ClientAdapter
+     */
+    protected $clientAdapter;
+
+    protected $endpoint = 'volumes';
+
+    /**
+     * @param AttachVolumeRequest $attachVolumeRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function attach(AttachVolumeRequest $attachVolumeRequest)
     {
+        return $this->clientAdapter->post($this->endpoint.'/'.$attachVolumeRequest->volume_id.'/actions', $attachVolumeRequest);
     }
 
     public function attachByName(AttachVolumeByNameRequest $attachVolumeByNameRequest)
