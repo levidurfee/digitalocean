@@ -12,6 +12,8 @@ use wappr\digitalocean\RequestContract;
  */
 class AttachVolumeRequest extends RequestContract
 {
+    public $type = 'attach';
+
     public $volume_id;
 
     public $droplet_id;
