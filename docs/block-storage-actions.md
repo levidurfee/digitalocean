@@ -2,6 +2,8 @@
 
 [DigitalOcean's docs on Block Storage Actions](https://developers.digitalocean.com/documentation/v2/#block-storage-actions)
 
+
+
 ## Attach a Volume
 
 Attach a Volume to a Droplet.
@@ -63,3 +65,40 @@ var_dump($result->getStatusCode()); // 200
 ### Throws
 
 Will throw `InvalidArgumentException` is the region does not exist in the `RegionsHelper` class.
+
+## Remove a Volume
+
+Remove (detach) a Volume to a Droplet.
+
+### Example Usage
+
+```php
+<?php
+
+use wappr\digitalocean\BlockStorageActions;
+use wappr\digitalocean\Requests\BlockStorageActions\RemoveVolumeRequest;
+
+include '../vendor/autoload.php';
+
+$blockStorageActions = new BlockStorageActions;
+$result = $blockStorageActions->remove(new RemoveVolumeRequest('1234', 1234));
+var_dump($result->getStatusCode()); // 200
+```
+
+### RemoveVolumeRequest properties
+
+| Name             | Description                 | Type   | Required |
+|------------------|-----------------------------|--------|----------|
+| `volume_id`      | BlockStorage volume id      | int    | *        |
+| `droplet_id`     | The Droplet ID              | string | *        |
+| `region`         | Region of of Volume         | string |          |
+
+### Throws
+
+Will throw `InvalidArgumentException` is the region does not exist in the `RegionsHelper` class.
+
+### RemoveVolumeRequest methods
+
+| Name        | Description                | Params   | Type     | Returns |
+|-------------|----------------------------|----------|----------|---------|
+| `setRegion` | Sets the `region` property | `region` | `string` | `$this` |
