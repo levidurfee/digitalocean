@@ -2,8 +2,6 @@
 
 [DigitalOcean's docs on Block Storage Actions](https://developers.digitalocean.com/documentation/v2/#block-storage-actions)
 
-
-
 ## Attach a Volume
 
 Attach a Volume to a Droplet.
