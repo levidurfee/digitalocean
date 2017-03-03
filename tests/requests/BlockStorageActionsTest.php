@@ -10,6 +10,7 @@ use wappr\digitalocean\Requests\BlockStorageActions\AttachVolumeByNameRequest;
 use wappr\digitalocean\Requests\BlockStorageActions\AttachVolumeRequest;
 use wappr\digitalocean\Requests\BlockStorageActions\RemoveVolumeByNameRequest;
 use wappr\digitalocean\Requests\BlockStorageActions\RemoveVolumeRequest;
+use wappr\digitalocean\Requests\BlockStorageActions\ResizeVolumeRequest;
 
 class BlockStorageActionsTest extends \PHPUnit_Framework_TestCase
 {
@@ -109,5 +110,24 @@ class BlockStorageActionsTest extends \PHPUnit_Framework_TestCase
     public function testRemoveVolumeByNameRequestRegionException()
     {
         (new RemoveVolumeByNameRequest('1234', 1234))->setRegion('new york');
+    }
+
+    public function testResizeVolume()
+    {
+        $request = new ResizeVolumeRequest('1234', 100);
+        $request->setRegion('nyc1');
+        $result = $this->blockStorageActions->resize($request);
+        $this->assertEquals($result->getStatusCode(), 200);
+        $this->assertInstanceOf(Response::class, $result);
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Region must be a slug.
+     * @expectedExceptionCode 200
+     */
+    public function TestResizeVolumeRegionException()
+    {
+        (new ResizeVolumeRequest('1234', 1234))->setRegion('new york');
     }
 }

@@ -72,8 +72,16 @@ class BlockStorageActions extends Resources
         return $this->clientAdapter->post($this->endpoint.'/actions', $removeVolumeByNameRequest);
     }
 
+    /**
+     * Resize a volume.
+     *
+     * @param ResizeVolumeRequest $resizeVolumeRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function resize(ResizeVolumeRequest $resizeVolumeRequest)
     {
+        return $this->clientAdapter->post($this->endpoint.'/'.$resizeVolumeRequest->volume_id.'/actions', $resizeVolumeRequest);
     }
 
     public function listAll(ListAllActionsRequest $listAllActionsRequest)

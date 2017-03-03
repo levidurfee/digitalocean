@@ -137,3 +137,40 @@ Will throw `InvalidArgumentException` is the region does not exist in the `Regio
 | Name        | Description                | Params   | Type     | Returns |
 |-------------|----------------------------|----------|----------|---------|
 | `setRegion` | Sets the `region` property | `region` | `string` | `$this` |
+
+## Resize a volume
+
+Resize a volume. You'll need the volume ID.
+
+### Example Usage
+
+```php
+<?php
+
+use wappr\digitalocean\BlockStorageActions;
+use wappr\digitalocean\Requests\BlockStorageActions\ResizeVolumeRequest;
+
+include '../vendor/autoload.php';
+
+$blockStorageActions = new BlockStorageActions;
+$result = $blockStorageActions->resize(new ResizeVolumeRequest('123', 1234));
+var_dump($result->getStatusCode()); // 200
+```
+
+### ResizeVolumeRequest properties
+
+| Name             | Description                 | Type   | Required |
+|------------------|-----------------------------|--------|----------|
+| `volume_id`      | BlockStorage volume id      | int    | *        |
+| `size`           | The new volume size         | int    | *        |
+| `region`         | Region of of Volume         | string |          |
+
+### Throws
+
+Will throw `InvalidArgumentException` is the region does not exist in the `RegionsHelper` class.
+
+### ResizeVolumeRequest methods
+
+| Name        | Description                | Params   | Type     | Returns |
+|-------------|----------------------------|----------|----------|---------|
+| `setRegion` | Sets the `region` property | `region` | `string` | `$this` |
