@@ -84,12 +84,27 @@ class BlockStorageActions extends Resources
         return $this->clientAdapter->post($this->endpoint.'/'.$resizeVolumeRequest->volume_id.'/actions', $resizeVolumeRequest);
     }
 
+    /**
+     * List all the actions performed on a volume.
+     *
+     * @param ListAllActionsRequest $listAllActionsRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function listAll(ListAllActionsRequest $listAllActionsRequest)
     {
         return $this->clientAdapter->get($this->endpoint.'/'.$listAllActionsRequest->volume_id.'/actions', $listAllActionsRequest);
     }
 
+    /**
+     * Retrieve more information about a single action.
+     *
+     * @param RetrieveActionRequest $retrieveActionRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function retrieve(RetrieveActionRequest $retrieveActionRequest)
     {
+        return $this->clientAdapter->get($this->endpoint.'/'.$retrieveActionRequest->volume_id.'/actions/'.$retrieveActionRequest->action_id, $retrieveActionRequest);
     }
 }

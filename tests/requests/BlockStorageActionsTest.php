@@ -12,6 +12,7 @@ use wappr\digitalocean\Requests\BlockStorageActions\ListAllActionsRequest;
 use wappr\digitalocean\Requests\BlockStorageActions\RemoveVolumeByNameRequest;
 use wappr\digitalocean\Requests\BlockStorageActions\RemoveVolumeRequest;
 use wappr\digitalocean\Requests\BlockStorageActions\ResizeVolumeRequest;
+use wappr\digitalocean\Requests\BlockStorageActions\RetrieveActionRequest;
 
 class BlockStorageActionsTest extends \PHPUnit_Framework_TestCase
 {
@@ -140,6 +141,14 @@ class BlockStorageActionsTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf(Response::class, $result);
     }
 
+    public function testRetrieveAction()
+    {
+        $request = new RetrieveActionRequest('1234', 1234);
+        $result = $this->blockStorageActions->retrieve($request);
+        $this->assertEquals($result->getStatusCode(), 200);
+        $this->assertInstanceOf(Response::class, $result);
+    }
+
     public function testAll()
     {
         $mock = new MockHandler([
@@ -151,6 +160,7 @@ class BlockStorageActionsTest extends \PHPUnit_Framework_TestCase
             new Response(200, ['X-Foo' => 'Bar']),
             new Response(200, ['X-Foo' => 'Bar']),
         ]);
+
         $handler = HandlerStack::create($mock);
         $client = new Client(['handler' => $handler]);
         $blockStorageActions = new BlockStorageActions($client);
@@ -161,7 +171,8 @@ class BlockStorageActionsTest extends \PHPUnit_Framework_TestCase
             ['method' => 'remove', 'request' => new RemoveVolumeRequest('1123', 1234)],
             ['method' => 'removeByName', 'request' => new RemoveVolumeByNameRequest('1123', 1234)],
             ['method' => 'resize', 'request' => new ResizeVolumeRequest('1234', 100)],
-            ['method' => 'listAll', 'request' => new ListAllActionsRequest('1234')]
+            ['method' => 'listAll', 'request' => new ListAllActionsRequest('1234')],
+            ['method' => 'retrieve', 'request' => new RetrieveActionRequest('1234', 1234)],
         ];
 
         foreach($requests as $request) {

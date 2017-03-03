@@ -199,3 +199,29 @@ var_dump($result->getStatusCode()); // 200
 | Name             | Description                 | Type   | Required |
 |------------------|-----------------------------|--------|----------|
 | `volume_id`      | BlockStorage volume id      | int    | *        |
+
+## Retrieve a volume action
+
+Retrieve more information about a specific action.
+
+### Example Usage
+
+```php
+<?php
+
+use wappr\digitalocean\BlockStorageActions;
+use wappr\digitalocean\Requests\BlockStorageActions\RetrieveActionRequest;
+
+include '../vendor/autoload.php';
+
+$blockStorageActions = new BlockStorageActions;
+$result = $blockStorageActions->retrieve(new RetrieveActionRequest('123', 1234));
+var_dump($result->getStatusCode()); // 200
+```
+
+### RetrieveActionRequest properties
+
+| Name             | Description                 | Type   | Required |
+|------------------|-----------------------------|--------|----------|
+| `volume_id`      | BlockStorage volume id      | int    | *        |
+| `action_id`      | Action ID                   | int    | *        |

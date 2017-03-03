@@ -11,4 +11,13 @@ use wappr\digitalocean\RequestContract;
  */
 class RetrieveActionRequest extends RequestContract
 {
+    public $volume_id;
+
+    public $action_id;
+
+    public function __construct($volume_id, $action_id)
+    {
+        $this->volume_id = $volume_id;
+        $this->action_id = $action_id;
+    }
 }
