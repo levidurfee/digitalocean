@@ -175,7 +175,7 @@ class BlockStorageActionsTest extends \PHPUnit_Framework_TestCase
             ['method' => 'retrieve', 'request' => new RetrieveActionRequest('1234', 1234)],
         ];
 
-        foreach($requests as $request) {
+        foreach ($requests as $request) {
             $result = $blockStorageActions->{$request['method']}($request['request']);
             $this->assertEquals($result->getStatusCode(), 200);
             $this->assertInstanceOf(Response::class, $result);

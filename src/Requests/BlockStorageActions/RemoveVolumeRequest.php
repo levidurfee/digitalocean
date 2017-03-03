@@ -35,7 +35,7 @@ class RemoveVolumeRequest extends RequestContract
      * RemoveVolumeRequest constructor.
      *
      * @param string $volume_id
-     * @param int $droplet_id
+     * @param int    $droplet_id
      */
     public function __construct($volume_id, $droplet_id)
     {
