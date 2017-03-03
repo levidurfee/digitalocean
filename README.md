@@ -5,6 +5,12 @@
 
 A [DigitalOcean](https://m.do.co/c/97ced4f9088d) PHP client that uses [Guzzle](https://github.com/guzzle/guzzle) by default.
 
+## Resources
+
+* Actions
+* BlockStorage
+* BlockStorageActions
+
 ## Help and docs
 
 * [Documentation](https://digitalocean.wappr.co/en/latest/)
