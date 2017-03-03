@@ -2,8 +2,8 @@
 
 namespace wappr\digitalocean\Requests\BlockStorageActions;
 
-use wappr\digitalocean\Helpers\RegionsHelper;
 use wappr\digitalocean\RequestContract;
+use wappr\digitalocean\Requests\BlockStorageActions\Traits\SetRegion;
 
 /**
  * Class ResizeVolumeRequest.
@@ -12,12 +12,26 @@ use wappr\digitalocean\RequestContract;
  */
 class ResizeVolumeRequest extends RequestContract
 {
+    use SetRegion;
+
+    /**
+     * @var string
+     */
     public $type = 'resize';
 
+    /**
+     * @var string
+     */
     public $volume_id;
 
+    /**
+     * @var int
+     */
     public $size_gigabytes;
 
+    /**
+     * @var string
+     */
     public $region;
 
     /**
@@ -30,21 +44,5 @@ class ResizeVolumeRequest extends RequestContract
     {
         $this->volume_id = $volume_id;
         $this->size_gigabytes = $size_gigabytes;
-    }
-
-    /**
-     * Must be a valid region slug.
-     *
-     * @param string $region
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function setRegion($region)
-    {
-        if (!RegionsHelper::check($region)) {
-            throw new \InvalidArgumentException('Region must be a slug.', 200);
-        }
-
-        $this->region = $region;
     }
 }

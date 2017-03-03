@@ -2,8 +2,8 @@
 
 namespace wappr\digitalocean\Requests\BlockStorageActions;
 
-use wappr\digitalocean\Helpers\RegionsHelper;
 use wappr\digitalocean\RequestContract;
+use wappr\digitalocean\Requests\BlockStorageActions\Traits\SetRegion;
 
 /**
  * Class RemoveVolumeRequest.
@@ -12,28 +12,37 @@ use wappr\digitalocean\RequestContract;
  */
 class RemoveVolumeRequest extends RequestContract
 {
+    use SetRegion;
+
+    /**
+     * @var string
+     */
     public $type = 'detach';
 
+    /**
+     * @var string
+     */
     public $volume_id;
 
+    /**
+     * @var int
+     */
     public $droplet_id;
 
+    /**
+     * @var string
+     */
     public $region;
 
+    /**
+     * RemoveVolumeRequest constructor.
+     *
+     * @param string $volume_id
+     * @param int $droplet_id
+     */
     public function __construct($volume_id, $droplet_id)
     {
         $this->volume_id = $volume_id;
         $this->droplet_id = $droplet_id;
-    }
-
-    public function setRegion($region)
-    {
-        if (!RegionsHelper::check($region)) {
-            throw new \InvalidArgumentException('Region must be a slug.', 200);
-        }
-
-        $this->region = $region;
-
-        return $this;
     }
 }
