@@ -139,4 +139,35 @@ class BlockStorageActionsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($result->getStatusCode(), 200);
         $this->assertInstanceOf(Response::class, $result);
     }
+
+    public function testAll()
+    {
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar']),
+            new Response(200, ['X-Foo' => 'Bar']),
+            new Response(200, ['X-Foo' => 'Bar']),
+            new Response(200, ['X-Foo' => 'Bar']),
+            new Response(200, ['X-Foo' => 'Bar']),
+            new Response(200, ['X-Foo' => 'Bar']),
+            new Response(200, ['X-Foo' => 'Bar']),
+        ]);
+        $handler = HandlerStack::create($mock);
+        $client = new Client(['handler' => $handler]);
+        $blockStorageActions = new BlockStorageActions($client);
+
+        $requests = [
+            ['method' => 'attach', 'request' => new AttachVolumeRequest('1123', 1234)],
+            ['method' => 'attachByName', 'request' => new AttachVolumeByNameRequest('name', 1234)],
+            ['method' => 'remove', 'request' => new RemoveVolumeRequest('1123', 1234)],
+            ['method' => 'removeByName', 'request' => new RemoveVolumeByNameRequest('1123', 1234)],
+            ['method' => 'resize', 'request' => new ResizeVolumeRequest('1234', 100)],
+            ['method' => 'listAll', 'request' => new ListAllActionsRequest('1234')]
+        ];
+
+        foreach($requests as $request) {
+            $result = $blockStorageActions->{$request['method']}($request['request']);
+            $this->assertEquals($result->getStatusCode(), 200);
+            $this->assertInstanceOf(Response::class, $result);
+        }
+    }
 }
