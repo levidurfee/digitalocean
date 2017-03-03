@@ -9,6 +9,8 @@ use wappr\digitalocean\Requests\BlockStorageActions\Traits\SetRegion;
  * Class AttachVolumeByNameRequest.
  *
  * Attach a volume to a Droplet by name.
+ *
+ * @property string $region
  */
 class AttachVolumeByNameRequest extends RequestContract
 {
@@ -28,11 +30,6 @@ class AttachVolumeByNameRequest extends RequestContract
      * @var string
      */
     public $volume_name;
-
-    /**
-     * @var string
-     */
-    public $region;
 
     /**
      * AttachVolumeByNameRequest constructor.

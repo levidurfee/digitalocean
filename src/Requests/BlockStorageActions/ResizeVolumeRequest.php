@@ -9,6 +9,8 @@ use wappr\digitalocean\Requests\BlockStorageActions\Traits\SetRegion;
  * Class ResizeVolumeRequest.
  *
  * Resize a volume.
+ *
+ * @property string $region
  */
 class ResizeVolumeRequest extends RequestContract
 {
@@ -28,11 +30,6 @@ class ResizeVolumeRequest extends RequestContract
      * @var int
      */
     public $size_gigabytes;
-
-    /**
-     * @var string
-     */
-    public $region;
 
     /**
      * ResizeVolumeRequest constructor.

@@ -9,6 +9,8 @@ use wappr\digitalocean\Requests\BlockStorageActions\Traits\SetRegion;
  * Class RemoveVolumeByNameRequest.
  *
  * Remove a volume from a Droplet by name.
+ *
+ * @property string $region
  */
 class RemoveVolumeByNameRequest extends RequestContract
 {
@@ -28,11 +30,6 @@ class RemoveVolumeByNameRequest extends RequestContract
      * @var string
      */
     public $volume_name;
-
-    /**
-     * @var string
-     */
-    public $region;
 
     /**
      * RemoveVolumeByNameRequest constructor.
