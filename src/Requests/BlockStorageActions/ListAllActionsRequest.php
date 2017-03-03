@@ -11,4 +11,18 @@ use wappr\digitalocean\RequestContract;
  */
 class ListAllActionsRequest extends RequestContract
 {
+    /**
+     * @var string
+     */
+    public $volume_id;
+
+    /**
+     * ListAllActionsRequest constructor.
+     *
+     * @param string $volume_id
+     */
+    public function __construct($volume_id)
+    {
+        $this->volume_id = $volume_id;
+    }
 }

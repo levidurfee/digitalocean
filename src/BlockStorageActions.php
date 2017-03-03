@@ -17,31 +17,94 @@ use wappr\digitalocean\Requests\BlockStorageActions\RetrieveActionRequest;
  */
 class BlockStorageActions extends Resources
 {
+    /**
+     * @var ClientAdapter
+     */
+    protected $clientAdapter;
+
+    protected $endpoint = 'volumes';
+
+    /**
+     * Attach a volume to a droplet using the volume's ID.
+     *
+     * @param AttachVolumeRequest $attachVolumeRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function attach(AttachVolumeRequest $attachVolumeRequest)
     {
+        return $this->clientAdapter->post($this->endpoint.'/'.$attachVolumeRequest->volume_id.'/actions', $attachVolumeRequest);
     }
 
+    /**
+     * Attach a volume to a droplet using the volume's name.
+     *
+     * @param AttachVolumeByNameRequest $attachVolumeByNameRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function attachByName(AttachVolumeByNameRequest $attachVolumeByNameRequest)
     {
+        return $this->clientAdapter->post($this->endpoint.'/actions', $attachVolumeByNameRequest);
     }
 
+    /**
+     * Detach a volume from a droplet using the volume id.
+     *
+     * @param RemoveVolumeRequest $removeVolumeRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function remove(RemoveVolumeRequest $removeVolumeRequest)
     {
+        return $this->clientAdapter->post($this->endpoint.'/'.$removeVolumeRequest->volume_id.'/actions', $removeVolumeRequest);
     }
 
+    /**
+     * Detach a volume from a droplet using the volume name.
+     *
+     * @param RemoveVolumeByNameRequest $removeVolumeByNameRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function removeByName(RemoveVolumeByNameRequest $removeVolumeByNameRequest)
     {
+        return $this->clientAdapter->post($this->endpoint.'/actions', $removeVolumeByNameRequest);
     }
 
+    /**
+     * Resize a volume.
+     *
+     * @param ResizeVolumeRequest $resizeVolumeRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function resize(ResizeVolumeRequest $resizeVolumeRequest)
     {
+        return $this->clientAdapter->post($this->endpoint.'/'.$resizeVolumeRequest->volume_id.'/actions', $resizeVolumeRequest);
     }
 
+    /**
+     * List all the actions performed on a volume.
+     *
+     * @param ListAllActionsRequest $listAllActionsRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function listAll(ListAllActionsRequest $listAllActionsRequest)
     {
+        return $this->clientAdapter->get($this->endpoint.'/'.$listAllActionsRequest->volume_id.'/actions', $listAllActionsRequest);
     }
 
+    /**
+     * Retrieve more information about a single action.
+     *
+     * @param RetrieveActionRequest $retrieveActionRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function retrieve(RetrieveActionRequest $retrieveActionRequest)
     {
+        return $this->clientAdapter->get($this->endpoint.'/'.$retrieveActionRequest->volume_id.'/actions/'.$retrieveActionRequest->action_id, $retrieveActionRequest);
     }
 }
