@@ -8,6 +8,7 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use wappr\digitalocean\Requests\BlockStorageActions\AttachVolumeByNameRequest;
 use wappr\digitalocean\Requests\BlockStorageActions\AttachVolumeRequest;
+use wappr\digitalocean\Requests\BlockStorageActions\ListAllActionsRequest;
 use wappr\digitalocean\Requests\BlockStorageActions\RemoveVolumeByNameRequest;
 use wappr\digitalocean\Requests\BlockStorageActions\RemoveVolumeRequest;
 use wappr\digitalocean\Requests\BlockStorageActions\ResizeVolumeRequest;
@@ -129,5 +130,13 @@ class BlockStorageActionsTest extends \PHPUnit_Framework_TestCase
     public function TestResizeVolumeRegionException()
     {
         (new ResizeVolumeRequest('1234', 1234))->setRegion('new york');
+    }
+
+    public function testListAll()
+    {
+        $request = new ListAllActionsRequest('1234');
+        $result = $this->blockStorageActions->listAll($request);
+        $this->assertEquals($result->getStatusCode(), 200);
+        $this->assertInstanceOf(Response::class, $result);
     }
 }

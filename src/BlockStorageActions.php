@@ -86,6 +86,7 @@ class BlockStorageActions extends Resources
 
     public function listAll(ListAllActionsRequest $listAllActionsRequest)
     {
+        return $this->clientAdapter->get($this->endpoint.'/'.$listAllActionsRequest->volume_id.'/actions', $listAllActionsRequest);
     }
 
     public function retrieve(RetrieveActionRequest $retrieveActionRequest)

@@ -174,3 +174,28 @@ Will throw `InvalidArgumentException` is the region does not exist in the `Regio
 | Name        | Description                | Params   | Type     | Returns |
 |-------------|----------------------------|----------|----------|---------|
 | `setRegion` | Sets the `region` property | `region` | `string` | `$this` |
+
+## List all volume actions
+
+To retrieve all actions that have been executed on a volume.
+
+### Example Usage
+
+```php
+<?php
+
+use wappr\digitalocean\BlockStorageActions;
+use wappr\digitalocean\Requests\BlockStorageActions\ListAllActionsRequest;
+
+include '../vendor/autoload.php';
+
+$blockStorageActions = new BlockStorageActions;
+$result = $blockStorageActions->listAll(new ListAllActionsRequest('123'));
+var_dump($result->getStatusCode()); // 200
+```
+
+### ResizeVolumeRequest properties
+
+| Name             | Description                 | Type   | Required |
+|------------------|-----------------------------|--------|----------|
+| `volume_id`      | BlockStorage volume id      | int    | *        |
