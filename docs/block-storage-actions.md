@@ -100,3 +100,40 @@ Will throw `InvalidArgumentException` is the region does not exist in the `Regio
 | Name        | Description                | Params   | Type     | Returns |
 |-------------|----------------------------|----------|----------|---------|
 | `setRegion` | Sets the `region` property | `region` | `string` | `$this` |
+
+## Remove a Volume by name
+
+Remove (detach) a Volume using it's name.
+
+### Example Usage
+
+```php
+<?php
+
+use wappr\digitalocean\BlockStorageActions;
+use wappr\digitalocean\Requests\BlockStorageActions\RemoveVolumeByNameRequest;
+
+include '../vendor/autoload.php';
+
+$blockStorageActions = new BlockStorageActions;
+$result = $blockStorageActions->removeByName(new RemoveVolumeByNameRequest('volume_name', 1234));
+var_dump($result->getStatusCode()); // 200
+```
+
+### RemoveVolumeByNameRequest properties
+
+| Name             | Description                 | Type   | Required |
+|------------------|-----------------------------|--------|----------|
+| `volume_id`      | BlockStorage volume id      | int    | *        |
+| `droplet_id`     | The Droplet ID              | string | *        |
+| `region`         | Region of of Volume         | string |          |
+
+### Throws
+
+Will throw `InvalidArgumentException` is the region does not exist in the `RegionsHelper` class.
+
+### RemoveVolumeByNameRequest methods
+
+| Name        | Description                | Params   | Type     | Returns |
+|-------------|----------------------------|----------|----------|---------|
+| `setRegion` | Sets the `region` property | `region` | `string` | `$this` |

@@ -60,8 +60,16 @@ class BlockStorageActions extends Resources
         return $this->clientAdapter->post($this->endpoint.'/'.$removeVolumeRequest->volume_id.'/actions', $removeVolumeRequest);
     }
 
+    /**
+     * Detach a volume from a droplet using the volume name.
+     *
+     * @param RemoveVolumeByNameRequest $removeVolumeByNameRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function removeByName(RemoveVolumeByNameRequest $removeVolumeByNameRequest)
     {
+        return $this->clientAdapter->post($this->endpoint.'/actions', $removeVolumeByNameRequest);
     }
 
     public function resize(ResizeVolumeRequest $resizeVolumeRequest)

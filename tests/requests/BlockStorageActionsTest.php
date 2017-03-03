@@ -8,6 +8,7 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use wappr\digitalocean\Requests\BlockStorageActions\AttachVolumeByNameRequest;
 use wappr\digitalocean\Requests\BlockStorageActions\AttachVolumeRequest;
+use wappr\digitalocean\Requests\BlockStorageActions\RemoveVolumeByNameRequest;
 use wappr\digitalocean\Requests\BlockStorageActions\RemoveVolumeRequest;
 
 class BlockStorageActionsTest extends \PHPUnit_Framework_TestCase
@@ -89,5 +90,24 @@ class BlockStorageActionsTest extends \PHPUnit_Framework_TestCase
     public function testRemoveVolumeRequestRegionException()
     {
         (new RemoveVolumeRequest('1234', 1234))->setRegion('new york');
+    }
+
+    public function testRemoveVolumeByNameRequest()
+    {
+        $request = new RemoveVolumeByNameRequest('1123', 1234);
+        $request->setRegion('nyc1');
+        $result = $this->blockStorageActions->removeByName($request);
+        $this->assertEquals($result->getStatusCode(), 200);
+        $this->assertInstanceOf(Response::class, $result);
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Region must be a slug.
+     * @expectedExceptionCode 200
+     */
+    public function testRemoveVolumeByNameRequestRegionException()
+    {
+        (new RemoveVolumeByNameRequest('1234', 1234))->setRegion('new york');
     }
 }
