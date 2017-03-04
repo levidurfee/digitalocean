@@ -53,3 +53,22 @@ $certificates = new Certificates;
 $result = $certificates->listAll(new ListAllCertificatesRequest);
 var_dump($result->getStatusCode()); // 200
 ```
+
+## Get information about a cert
+
+Get information about an existing certificate.
+
+### Example Usage
+
+```php
+<?php
+
+use wappr\digitalocean\Certificates;
+use wappr\digitalocean\Requests\Certificates\RetrieveCertificateRequest;
+
+include '../vendor/autoload.php';
+
+$certificates = new Certificates;
+$result = $certificates->retrieve(new RetrieveCertificateRequest('certid'));
+var_dump($result->getStatusCode()); // 200
+```

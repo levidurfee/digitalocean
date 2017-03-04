@@ -44,8 +44,16 @@ class Certificates extends Resources
         return $this->clientAdapter->get($this->endpoint, $listAllCertificatesRequest);
     }
 
+    /**
+     * Get information about an existing certificate.
+     *
+     * @param RetrieveCertificateRequest $retrieveCertificateRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function retrieve(RetrieveCertificateRequest $retrieveCertificateRequest)
     {
+        return $this->clientAdapter->get($this->endpoint.'/'.$retrieveCertificateRequest->certificate_id, $retrieveCertificateRequest);
     }
 
     public function delete(DeleteCertificateRequest $deleteCertificateRequest)

@@ -8,6 +8,7 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use wappr\digitalocean\Requests\Certificates\CreateNewCertificateRequest;
 use wappr\digitalocean\Requests\Certificates\ListAllCertificatesRequest;
+use wappr\digitalocean\Requests\Certificates\RetrieveCertificateRequest;
 
 class CertificatesTest extends \PHPUnit_Framework_TestCase
 {
@@ -35,8 +36,14 @@ class CertificatesTest extends \PHPUnit_Framework_TestCase
             ],
             [
                 'method' => 'listAll',
-                'request' => new ListAllCertificatesRequest()
-            ]
+                'request' => new ListAllCertificatesRequest,
+            ],
+            [
+                'method' => 'retrieve',
+                'request' => new RetrieveCertificateRequest(
+                    '1234CertId'
+                ),
+            ],
         ];
 
         foreach ($requests as $request) {
