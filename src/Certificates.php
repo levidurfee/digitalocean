@@ -32,8 +32,16 @@ class Certificates extends Resources
         return $this->clientAdapter->post($this->endpoint, $createNewCertificateRequest);
     }
 
+    /**
+     * List all of the certificates available on your DigitalOcean account.
+     *
+     * @param ListAllCertificatesRequest $listAllCertificatesRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function listAll(ListAllCertificatesRequest $listAllCertificatesRequest)
     {
+        return $this->clientAdapter->get($this->endpoint, $listAllCertificatesRequest);
     }
 
     public function retrieve(RetrieveCertificateRequest $retrieveCertificateRequest)

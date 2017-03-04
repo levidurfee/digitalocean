@@ -7,6 +7,7 @@ use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use wappr\digitalocean\Requests\Certificates\CreateNewCertificateRequest;
+use wappr\digitalocean\Requests\Certificates\ListAllCertificatesRequest;
 
 class CertificatesTest extends \PHPUnit_Framework_TestCase
 {
@@ -32,6 +33,10 @@ class CertificatesTest extends \PHPUnit_Framework_TestCase
                     'leaf_cert',
                     'cert_chain'),
             ],
+            [
+                'method' => 'listAll',
+                'request' => new ListAllCertificatesRequest()
+            ]
         ];
 
         foreach ($requests as $request) {

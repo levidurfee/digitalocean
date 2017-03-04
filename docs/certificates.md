@@ -34,3 +34,22 @@ var_dump($result->getStatusCode()); // 200
 | `private_key`       | PEM formatted private key   | string | *        |
 | `leaf_certificate`  | PEM formatted public cert   | string | *        |
 | `certificate_chain` | Full PEM trust chain for CA | string | *        |
+
+## List all certs
+
+List all of the certificates available on your DigitalOcean account.
+
+### Example Usage
+
+```php
+<?php
+
+use wappr\digitalocean\Certificates;
+use wappr\digitalocean\Requests\Certificates\ListAllCertificatesRequest;
+
+include '../vendor/autoload.php';
+
+$certificates = new Certificates;
+$result = $certificates->listAll(new ListAllCertificatesRequest);
+var_dump($result->getStatusCode()); // 200
+```
