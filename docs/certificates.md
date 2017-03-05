@@ -72,3 +72,22 @@ $certificates = new Certificates;
 $result = $certificates->retrieve(new RetrieveCertificateRequest('certid'));
 var_dump($result->getStatusCode()); // 200
 ```
+
+## Delete a certificate
+
+Delete an existing certificate.
+
+### Example Usage
+
+```php
+<?php
+
+use wappr\digitalocean\Certificates;
+use wappr\digitalocean\Requests\Certificates\DeleteCertificateRequest;
+
+include '../vendor/autoload.php';
+
+$certificates = new Certificates;
+$result = $certificates->delete(new DeleteCertificateRequest('certid'));
+var_dump($result->getStatusCode()); // 204
+```

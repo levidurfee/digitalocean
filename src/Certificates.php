@@ -56,7 +56,15 @@ class Certificates extends Resources
         return $this->clientAdapter->get($this->endpoint.'/'.$retrieveCertificateRequest->certificate_id, $retrieveCertificateRequest);
     }
 
+    /**
+     * Delete a certificate. Will return 204 on successful.
+     *
+     * @param DeleteCertificateRequest $deleteCertificateRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function delete(DeleteCertificateRequest $deleteCertificateRequest)
     {
+        return $this->clientAdapter->delete($this->endpoint.'/'.$deleteCertificateRequest->certificate_id, $deleteCertificateRequest);
     }
 }
