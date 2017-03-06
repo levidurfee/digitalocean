@@ -6,6 +6,9 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
+use wappr\digitalocean\Requests\Domains\CreateDomainRequest;
+use wappr\digitalocean\Requests\Domains\ListAllDomainsRequest;
+use wappr\digitalocean\Requests\Domains\RetrieveDomainRequest;
 
 class DomainsTest extends \PHPUnit_Framework_TestCase
 {
@@ -15,7 +18,7 @@ class DomainsTest extends \PHPUnit_Framework_TestCase
             200,
             200,
             200,
-            204,
+            200,
         ];
         $mock = new MockHandler([
             new Response($responseCodes[0]),
@@ -26,10 +29,31 @@ class DomainsTest extends \PHPUnit_Framework_TestCase
 
         $handler = HandlerStack::create($mock);
         $client = new Client(['handler' => $handler]);
-        $certificates = new Certificates($client);
+        $certificates = new Domains($client);
 
         $requests = [
-
+            [
+                'method' => 'listAll',
+                'request' => new ListAllDomainsRequest,
+            ],
+            [
+                'method' => 'create',
+                'request' => new CreateDomainRequest(
+                    'example.com',
+                    '127.0.0.1'
+                ),
+            ],
+            [
+                'method' => 'create',
+                'request' => new CreateDomainRequest(
+                    'example.net',
+                    '::1'
+                ),
+            ],
+            [
+                'method' => 'retrieve',
+                'request' => new RetrieveDomainRequest('example.com')
+            ],
         ];
 
         $i = 0; // iterator

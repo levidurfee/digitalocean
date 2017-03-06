@@ -43,8 +43,16 @@ class Domains extends Resources
         return $this->clientAdapter->post($this->endpoint, $createDomainRequest);
     }
 
+    /**
+     * Get details about a specific domain.
+     *
+     * @param RetrieveDomainRequest $retrieveDomainRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function retrieve(RetrieveDomainRequest $retrieveDomainRequest)
     {
+        return $this->clientAdapter->get($this->endpoint.'/'.$retrieveDomainRequest->domain_name, $retrieveDomainRequest);
     }
 
     public function delete(DeleteDomainRequest $deleteDomainRequest)

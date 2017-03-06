@@ -5,7 +5,7 @@ namespace wappr\digitalocean\Requests\Domains;
 use wappr\digitalocean\RequestContract;
 
 /**
- * Class CreateDomainRequest
+ * Class CreateDomainRequest.
  */
 class CreateDomainRequest extends RequestContract
 {
