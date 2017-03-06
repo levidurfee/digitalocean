@@ -9,12 +9,38 @@ use wappr\digitalocean\Requests\Domains\RetrieveDomainRequest;
 
 class Domains extends Resources
 {
+    /**
+     * @var ClientAdapter
+     */
+    protected $clientAdapter;
+
+    /**
+     * @var string
+     */
+    private $endpoint = 'domains';
+
+    /**
+     * List all of the domains.
+     *
+     * @param ListAllDomainsRequest $listAllDomainsRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function listAll(ListAllDomainsRequest $listAllDomainsRequest)
     {
+        return $this->clientAdapter->get($this->endpoint, $listAllDomainsRequest);
     }
 
+    /**
+     * Create a new domain.
+     *
+     * @param CreateDomainRequest $createDomainRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function create(CreateDomainRequest $createDomainRequest)
     {
+        return $this->clientAdapter->post($this->endpoint, $createDomainRequest);
     }
 
     public function retrieve(RetrieveDomainRequest $retrieveDomainRequest)
