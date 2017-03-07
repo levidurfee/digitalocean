@@ -6,6 +6,7 @@ use wappr\digitalocean\RequestContract;
 
 class CreateDomainRecordsRequest extends RequestContract
 {
+    public $domain_name;
     /**
      * @var string
      */
@@ -23,9 +24,9 @@ class CreateDomainRecordsRequest extends RequestContract
 
     protected $error;
 
-
-    public function __construct($type, $name = '', $data = '', $priority = '', $port = '', $weight = '')
+    public function __construct($domain_name, $type, $name = '', $data = '', $priority = '', $port = '', $weight = '')
     {
+        $this->domain_name = $domain_name;
         $this->type = strtoupper($type);
         $this->type = $type;
         $this->name = $name;
@@ -54,7 +55,11 @@ class CreateDomainRecordsRequest extends RequestContract
             'SRV' => ['name', 'data', 'priority', 'port', 'weight']
         ];
 
-        // loop through this array to check if all require is there
+        foreach($required[$this->type] as $reqs) {
+            if(strlen($this->{$reqs}) == 0) {
+                $this->error = $reqs . ' is required for ' . $this->type;
+            }
+        }
 
 
         return true;

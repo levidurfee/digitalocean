@@ -13,7 +13,7 @@ class DomainRecords extends Resources
     /**
      * @var ClientAdapter
      */
-    private $clientAdapter;
+    protected $clientAdapter;
 
     /**
      * @var string
@@ -32,8 +32,16 @@ class DomainRecords extends Resources
         return $this->clientAdapter->get($this->endpoint.'/'.$listAllDomainRecordsRequest->domain_name.'/records', $listAllDomainRecordsRequest);
     }
 
+    /**
+     * Create a new domain record for a domain.
+     *
+     * @param CreateDomainRecordsRequest $createDomainRecordsRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function create(CreateDomainRecordsRequest $createDomainRecordsRequest)
     {
+        return $this->clientAdapter->post($this->endpoint.'/'.$createDomainRecordsRequest->domain_name.'/records', $createDomainRecordsRequest);
     }
 
     public function retrieve(RetrieveDomainRecordsRequest $retrieveDomainRecordsRequest)
