@@ -28,7 +28,6 @@ class CreateDomainRecordsRequest extends RequestContract
     {
         $this->domain_name = $domain_name;
         $this->type = strtoupper($type);
-        $this->type = $type;
         $this->name = $name;
         $this->data = $data;
         $this->priority = $priority;
@@ -58,9 +57,10 @@ class CreateDomainRecordsRequest extends RequestContract
         foreach($required[$this->type] as $reqs) {
             if(strlen($this->{$reqs}) == 0) {
                 $this->error = $reqs . ' is required for ' . $this->type;
+
+                return false;
             }
         }
-
 
         return true;
     }
