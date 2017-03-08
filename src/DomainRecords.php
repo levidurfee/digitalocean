@@ -44,8 +44,16 @@ class DomainRecords extends Resources
         return $this->clientAdapter->post($this->endpoint.'/'.$createDomainRecordsRequest->domain_name.'/records', $createDomainRecordsRequest);
     }
 
+    /**
+     * Retrieve information about an existing record.
+     *
+     * @param RetrieveDomainRecordsRequest $retrieveDomainRecordsRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function retrieve(RetrieveDomainRecordsRequest $retrieveDomainRecordsRequest)
     {
+        return $this->clientAdapter->get($this->endpoint.'/'.$retrieveDomainRecordsRequest->domain_name.'/records/'.$retrieveDomainRecordsRequest->record_id, $retrieveDomainRecordsRequest);
     }
 
     public function update(UpdateDomainRecordsRequest $updateDomainRecordsRequest)

@@ -8,6 +8,7 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use wappr\digitalocean\Requests\DomainRecords\CreateDomainRecordsRequest;
 use wappr\digitalocean\Requests\DomainRecords\ListAllDomainRecordsRequest;
+use wappr\digitalocean\Requests\DomainRecords\RetrieveDomainRecordsRequest;
 
 class DomainRecordsTest extends \PHPUnit_Framework_TestCase
 {
@@ -139,5 +140,22 @@ class DomainRecordsTest extends \PHPUnit_Framework_TestCase
     public function testCAreateRecordDataMissingParams()
     {
         new CreateDomainRecordsRequest('example.com', 'A', 'name');
+    }
+
+    public function testRetrieveRecordRequest()
+    {
+        $mock = new MockHandler([
+            new Response(200),
+        ]);
+
+        $handler = HandlerStack::create($mock);
+        $client = new Client(['handler' => $handler]);
+        $domainRecords = new DomainRecords($client);
+        $response = $domainRecords->retrieve(
+            new RetrieveDomainRecordsRequest('example.com', 1234)
+        );
+
+        $this->assertEquals($response->getStatusCode(), 200);
+        $this->assertInstanceOf(Response::class, $response);
     }
 }
