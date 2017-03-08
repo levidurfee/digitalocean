@@ -24,8 +24,14 @@ class CreateDomainRecordsRequest extends RequestContract
 
     protected $error;
 
+    protected $allowedTypes = ['A', 'AAAA', 'CNAME', 'TXT', 'MX', 'NS', 'SRV'];
+
     public function __construct($domain_name, $type, $name = '', $data = '', $priority = '', $port = '', $weight = '')
     {
+        if (!in_array(strtoupper($type), $this->allowedTypes)) {
+            throw new \InvalidArgumentException('That is not an allowed type.', 501);
+        }
+
         $this->domain_name = $domain_name;
         $this->type = strtoupper($type);
         $this->name = $name;
@@ -34,15 +40,14 @@ class CreateDomainRecordsRequest extends RequestContract
         $this->port = $port;
         $this->weight = $weight;
 
-        if($this->checkType()) {
+        if ($this->checkParameters()) {
             return true;
         }
 
         throw new \InvalidArgumentException($this->error, 500);
-
     }
 
-    protected function checkType()
+    protected function checkParameters()
     {
         $required = [
             'A' => ['name', 'data'],
@@ -51,12 +56,12 @@ class CreateDomainRecordsRequest extends RequestContract
             'TXT' => ['name', 'data'],
             'MX' => ['data', 'priority'],
             'NS' => ['data'],
-            'SRV' => ['name', 'data', 'priority', 'port', 'weight']
+            'SRV' => ['name', 'data', 'priority', 'port', 'weight'],
         ];
 
-        foreach($required[$this->type] as $reqs) {
-            if(strlen($this->{$reqs}) == 0) {
-                $this->error = $reqs . ' is required for ' . $this->type;
+        foreach ($required[$this->type] as $reqs) {
+            if (strlen($this->{$reqs}) == 0) {
+                $this->error = $reqs.' is required for '.$this->type;
 
                 return false;
             }

@@ -55,12 +55,12 @@ class DomainsTest extends \PHPUnit_Framework_TestCase
             ],
             [
                 'method' => 'retrieve',
-                'request' => new RetrieveDomainRequest('example.com')
+                'request' => new RetrieveDomainRequest('example.com'),
             ],
             [
                 'method' => 'delete',
-                'request' => new DeleteDomainRequest('example.com')
-            ]
+                'request' => new DeleteDomainRequest('example.com'),
+            ],
         ];
 
         $i = 0; // iterator

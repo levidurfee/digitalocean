@@ -8,7 +8,6 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use wappr\digitalocean\Requests\DomainRecords\CreateDomainRecordsRequest;
 use wappr\digitalocean\Requests\DomainRecords\ListAllDomainRecordsRequest;
-use wappr\digitalocean\Requests\Domains\CreateDomainRequest;
 
 class DomainRecordsTest extends \PHPUnit_Framework_TestCase
 {
@@ -34,8 +33,8 @@ class DomainRecordsTest extends \PHPUnit_Framework_TestCase
         $requests = [
             [
                 'method' => 'listAll',
-                'request' => new ListAllDomainRecordsRequest('example.com')
-            ]
+                'request' => new ListAllDomainRecordsRequest('example.com'),
+            ],
         ];
 
         $i = 0; // iterator
@@ -75,32 +74,32 @@ class DomainRecordsTest extends \PHPUnit_Framework_TestCase
         $requests = [
             [
                 'method' => 'create',
-                'request' => new CreateDomainRecordsRequest('example.com', 'A', 'test', '127.0.0.1')
+                'request' => new CreateDomainRecordsRequest('example.com', 'A', 'test', '127.0.0.1'),
             ],
             [
                 'method' => 'create',
-                'request' => new CreateDomainRecordsRequest('example.com', 'AAAA', 'test', '127.0.0.1')
+                'request' => new CreateDomainRecordsRequest('example.com', 'AAAA', 'test', '127.0.0.1'),
             ],
             [
                 'method' => 'create',
-                'request' => new CreateDomainRecordsRequest('example.com', 'CNAME', 'test', 'example.com')
+                'request' => new CreateDomainRecordsRequest('example.com', 'CNAME', 'test', 'example.com'),
             ],
             [
                 'method' => 'create',
-                'request' => new CreateDomainRecordsRequest('example.com', 'TXT', 'name', 'data')
+                'request' => new CreateDomainRecordsRequest('example.com', 'TXT', 'name', 'data'),
             ],
             [
                 'method' => 'create',
-                'request' => new CreateDomainRecordsRequest('example.com', 'MX', null, 'data', '10')
+                'request' => new CreateDomainRecordsRequest('example.com', 'MX', null, 'data', '10'),
             ],
             [
                 'method' => 'create',
-                'request' => new CreateDomainRecordsRequest('example.com', 'NS', null, 'data')
+                'request' => new CreateDomainRecordsRequest('example.com', 'NS', null, 'data'),
             ],
             [
                 'method' => 'create',
-                'request' => new CreateDomainRecordsRequest('example.com', 'SRV', 'data', '100', '100', '990', 900)
-            ]
+                'request' => new CreateDomainRecordsRequest('example.com', 'SRV', 'data', '100', '100', '990', 900),
+            ],
         ];
 
         $i = 0; // iterator
@@ -110,5 +109,35 @@ class DomainRecordsTest extends \PHPUnit_Framework_TestCase
             $this->assertInstanceOf(Response::class, $result);
             ++$i;
         }
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage That is not an allowed type.
+     * @expectedExceptionCode 501
+     */
+    public function testCreateRecordInvalidTypeException()
+    {
+        new CreateDomainRecordsRequest('example.com', 'NOPE', 'test', '127.0.0.1');
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage name is required for A
+     * @expectedExceptionCode 500
+     */
+    public function testACreateRecordNameMissingParams()
+    {
+        new CreateDomainRecordsRequest('example.com', 'A', '');
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage data is required for A
+     * @expectedExceptionCode 500
+     */
+    public function testCAreateRecordDataMissingParams()
+    {
+        new CreateDomainRecordsRequest('example.com', 'A', 'name');
     }
 }
