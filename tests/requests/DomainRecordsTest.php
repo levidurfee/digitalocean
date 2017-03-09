@@ -9,6 +9,7 @@ use GuzzleHttp\Psr7\Response;
 use wappr\digitalocean\Requests\DomainRecords\CreateDomainRecordsRequest;
 use wappr\digitalocean\Requests\DomainRecords\ListAllDomainRecordsRequest;
 use wappr\digitalocean\Requests\DomainRecords\RetrieveDomainRecordsRequest;
+use wappr\digitalocean\Requests\DomainRecords\UpdateDomainRecordsRequest;
 
 class DomainRecordsTest extends \PHPUnit_Framework_TestCase
 {
@@ -157,5 +158,80 @@ class DomainRecordsTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($response->getStatusCode(), 200);
         $this->assertInstanceOf(Response::class, $response);
+    }
+
+    public function testUpdateRecordRequest()
+    {
+        $responseCodes = [
+            200,
+            200,
+            200,
+            200,
+            200,
+            200,
+            200,
+        ];
+        $mock = new MockHandler([
+            new Response($responseCodes[0]),
+            new Response($responseCodes[1]),
+            new Response($responseCodes[2]),
+            new Response($responseCodes[3]),
+            new Response($responseCodes[4]),
+            new Response($responseCodes[5]),
+            new Response($responseCodes[6]),
+        ]);
+
+        $handler = HandlerStack::create($mock);
+        $client = new Client(['handler' => $handler]);
+        $domainRecords = new DomainRecords($client);
+
+        $requests = [
+            [
+                'method' => 'update',
+                'request' => new UpdateDomainRecordsRequest(1234, 'example.com', 'A', 'test', '127.0.0.1'),
+            ],
+            [
+                'method' => 'update',
+                'request' => new UpdateDomainRecordsRequest(1234, 'example.com', 'AAAA', 'test', '127.0.0.1'),
+            ],
+            [
+                'method' => 'update',
+                'request' => new UpdateDomainRecordsRequest(1234, 'example.com', 'CNAME', 'test', 'example.com'),
+            ],
+            [
+                'method' => 'update',
+                'request' => new UpdateDomainRecordsRequest(1234, 'example.com', 'TXT', 'name', 'data'),
+            ],
+            [
+                'method' => 'update',
+                'request' => new UpdateDomainRecordsRequest(1234, 'example.com', 'MX', null, 'data', '10'),
+            ],
+            [
+                'method' => 'update',
+                'request' => new UpdateDomainRecordsRequest(1234, 'example.com', 'NS', null, 'data'),
+            ],
+            [
+                'method' => 'update',
+                'request' => new UpdateDomainRecordsRequest(1234, 'example.com', 'SRV', 'data', '100', '100', '990', 900),
+            ],
+        ];
+
+        $i = 0; // iterator
+        foreach ($requests as $request) {
+            $result = $domainRecords->{$request['method']}($request['request']);
+            $this->assertEquals($result->getStatusCode(), $responseCodes[$i]);
+            $this->assertInstanceOf(Response::class, $result);
+            ++$i;
+        }
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage name is required for A
+     * @expectedExceptionCode 500
+     */
+    public function testUpdateDomainRecordException()
+    {
+        new UpdateDomainRecordsRequest(1234, 'example.com', 'A');
     }
 }
