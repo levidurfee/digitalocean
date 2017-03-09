@@ -7,6 +7,7 @@ use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use wappr\digitalocean\Requests\DomainRecords\CreateDomainRecordsRequest;
+use wappr\digitalocean\Requests\DomainRecords\DeleteDomainRecordsRequest;
 use wappr\digitalocean\Requests\DomainRecords\ListAllDomainRecordsRequest;
 use wappr\digitalocean\Requests\DomainRecords\RetrieveDomainRecordsRequest;
 use wappr\digitalocean\Requests\DomainRecords\UpdateDomainRecordsRequest;
@@ -233,5 +234,22 @@ class DomainRecordsTest extends \PHPUnit_Framework_TestCase
     public function testUpdateDomainRecordException()
     {
         new UpdateDomainRecordsRequest(1234, 'example.com', 'A');
+    }
+
+    public function testDeleteRecordRequest()
+    {
+        $mock = new MockHandler([
+            new Response(204),
+        ]);
+
+        $handler = HandlerStack::create($mock);
+        $client = new Client(['handler' => $handler]);
+        $domainRecords = new DomainRecords($client);
+        $response = $domainRecords->delete(
+            new DeleteDomainRecordsRequest('example.com', 1234)
+        );
+
+        $this->assertEquals($response->getStatusCode(), 204);
+        $this->assertInstanceOf(Response::class, $response);
     }
 }

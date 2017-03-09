@@ -70,5 +70,6 @@ class DomainRecords extends Resources
 
     public function delete(DeleteDomainRecordsRequest $deleteDomainRecordsRequest)
     {
+        return $this->clientAdapter->delete($this->endpoint.'/'.$deleteDomainRecordsRequest->domain_name.'/records/'.$deleteDomainRecordsRequest->record_id, $deleteDomainRecordsRequest);
     }
 }
