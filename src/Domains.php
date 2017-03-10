@@ -55,7 +55,13 @@ class Domains extends Resources
         return $this->clientAdapter->get($this->endpoint.'/'.$retrieveDomainRequest->domain_name, $retrieveDomainRequest);
     }
 
+    /**
+     * @param DeleteDomainRequest $deleteDomainRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function delete(DeleteDomainRequest $deleteDomainRequest)
     {
+        return $this->clientAdapter->delete($this->endpoint.'/'.$deleteDomainRequest->domain_name, $deleteDomainRequest);
     }
 }

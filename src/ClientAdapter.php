@@ -20,7 +20,7 @@ class ClientAdapter
     /**
      * @var string
      */
-    protected $version = '0.18.0';
+    protected $version = '0.19.0';
 
     /**
      * @var string
@@ -132,6 +132,34 @@ class ClientAdapter
 
         try {
             $response = $this->client->request('DELETE', $endpoint, $request);
+        } catch (RequestException $e) {
+            $response = $e->getResponse();
+        }
+
+        return $response;
+    }
+
+    /**
+     * Send an update request.
+     *
+     * @param $endpoint
+     * @param RequestContract $requestContract
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
+    public function put($endpoint, RequestContract $requestContract)
+    {
+        $request = [
+            'auth' => [$this->apiToken, ':'],
+            'json' => $requestContract->fetch(),
+            'debug' => $this->debug,
+            'headers' => [
+                'User-Agent' => 'wappr\digitalocean:'.$this->version,
+            ],
+        ];
+
+        try {
+            $response = $this->client->request('PUT', $endpoint, $request);
         } catch (RequestException $e) {
             $response = $e->getResponse();
         }
