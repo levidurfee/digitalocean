@@ -30,6 +30,7 @@ $droplets->create(new CreateDropletsRequest('name', '512mb', 'nyc1', 'ubuntu-14-
 * [BlockStorageActions](https://digitalocean.wappr.co/en/latest/block-storage-actions/)
 * [Certificates](https://digitalocean.wappr.co/en/latest/certificates/)
 * [Domains](https://digitalocean.wappr.co/en/latest/domains/)
+* [Domain Records](https://digitalocean.wappr.co/en/latest/domain-records/)
 
 ## Help and docs
 
