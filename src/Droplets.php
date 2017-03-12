@@ -28,13 +28,28 @@ class Droplets extends Resources
 
     private $endpoint = 'droplets';
 
+    /**
+     * Create a new Droplet.
+     *
+     * @param CreateDropletsRequest $createDropletRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function create(CreateDropletsRequest $createDropletRequest)
     {
         return $this->clientAdapter->post($this->endpoint, $createDropletRequest);
     }
 
+    /**
+     * Create multiple Droplets.
+     *
+     * @param CreateMultipleDropletsRequest $createMultipleDropletsRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function createMultiple(CreateMultipleDropletsRequest $createMultipleDropletsRequest)
     {
+        return $this->clientAdapter->post($this->endpoint, $createMultipleDropletsRequest);
     }
 
     public function retrieve(RetrieveDropletsRequest $retrieveDropletsRequest)

@@ -7,6 +7,7 @@ use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use wappr\digitalocean\Requests\Droplets\CreateDropletsRequest;
+use wappr\digitalocean\Requests\Droplets\CreateMultipleDropletsRequest;
 
 class DropletsTest extends \PHPUnit_Framework_TestCase
 {
@@ -63,5 +64,50 @@ class DropletsTest extends \PHPUnit_Framework_TestCase
     public function testCreateDropletSizeException()
     {
         new CreateDropletsRequest('name', 'nyc2', '1', 'ubuntu');
+    }
+
+    public function testSuccessfulRequests()
+    {
+        $responseCodes = [
+            200,
+            200,
+            200,
+            200,
+            204,
+        ];
+        $mock = new MockHandler([
+            new Response($responseCodes[0]),
+            new Response($responseCodes[1]),
+            new Response($responseCodes[2]),
+            new Response($responseCodes[3]),
+            new Response($responseCodes[4]),
+        ]);
+
+        $handler = HandlerStack::create($mock);
+        $client = new Client(['handler' => $handler]);
+        $certificates = new Droplets($client);
+
+        $requests = [
+            [
+                'method' => 'create',
+                'request' => new CreateDropletsRequest(
+                    'name', 'nyc1', '512mb', 'ubuntu'
+                ),
+            ],
+            [
+                'method' => 'createMultiple',
+                'request' => new CreateMultipleDropletsRequest(
+                    ['name1', 'name2'], 'nyc2', '512mb', 'ubuntu'
+                ),
+            ],
+        ];
+
+        $i = 0; // iterator
+        foreach ($requests as $request) {
+            $result = $certificates->{$request['method']}($request['request']);
+            $this->assertEquals($result->getStatusCode(), $responseCodes[$i]);
+            $this->assertInstanceOf(Response::class, $result);
+            ++$i;
+        }
     }
 }
