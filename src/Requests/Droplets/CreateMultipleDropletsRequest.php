@@ -17,7 +17,7 @@ class CreateMultipleDropletsRequest extends RequestContract
     /**
      * CreateMultipleDropletsRequest constructor.
      *
-     * @param array $name
+     * @param array  $name
      * @param string $region
      * @param string $size
      * @param string $images
