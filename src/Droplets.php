@@ -64,8 +64,16 @@ class Droplets extends Resources
         return $this->clientAdapter->get($this->endpoint.'/'.$retrieveDropletsRequest->droplet_id, $retrieveDropletsRequest);
     }
 
+    /**
+     * Return a list of all Droplets.
+     *
+     * @param ListAllDropletsRequest $listAllDropletsRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function listAll(ListAllDropletsRequest $listAllDropletsRequest)
     {
+        return $this->clientAdapter->get($this->endpoint, $listAllDropletsRequest);
     }
 
     public function listByTag(ListByTagDropletRequest $listByTagDropletRequest)

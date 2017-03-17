@@ -8,6 +8,7 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use wappr\digitalocean\Requests\Droplets\CreateDropletsRequest;
 use wappr\digitalocean\Requests\Droplets\CreateMultipleDropletsRequest;
+use wappr\digitalocean\Requests\Droplets\ListAllDropletsRequest;
 use wappr\digitalocean\Requests\Droplets\RetrieveDropletsRequest;
 
 class DropletsTest extends \PHPUnit_Framework_TestCase
@@ -105,6 +106,10 @@ class DropletsTest extends \PHPUnit_Framework_TestCase
                 'method' => 'retrieve',
                 'request' => new RetrieveDropletsRequest('1234'),
             ],
+            [
+                'method' => 'listAll',
+                'request' => new ListAllDropletsRequest
+            ]
         ];
 
         $i = 0; // iterator
