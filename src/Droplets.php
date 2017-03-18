@@ -76,8 +76,16 @@ class Droplets extends Resources
         return $this->clientAdapter->get($this->endpoint, $listAllDropletsRequest);
     }
 
+    /**
+     * List all droplets that have a specific tag.
+     *
+     * @param ListByTagDropletRequest $listByTagDropletRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function listByTag(ListByTagDropletRequest $listByTagDropletRequest)
     {
+        return $this->clientAdapter->get($this->endpoint, $listByTagDropletRequest);
     }
 
     public function listAvailableKernels(ListAvailableKernelsDropletsRequest $listAvailableKernelsDropletsRequest)
