@@ -61,7 +61,8 @@ class Droplets extends Resources
      */
     public function retrieve(RetrieveDropletsRequest $retrieveDropletsRequest)
     {
-        return $this->clientAdapter->get($this->endpoint.'/'.$retrieveDropletsRequest->droplet_id, $retrieveDropletsRequest);
+        return $this->clientAdapter->get($this->endpoint.'/'.$retrieveDropletsRequest->droplet_id,
+            $retrieveDropletsRequest);
     }
 
     /**
@@ -88,7 +89,8 @@ class Droplets extends Resources
         return $this->clientAdapter->get($this->endpoint, $listByTagDropletRequest);
     }
 
-    public function listAvailableKernels(ListAvailableKernelsDropletsRequest $listAvailableKernelsDropletsRequest)
+    public function listAvailableKernels(
+        ListAvailableKernelsDropletsRequest $listAvailableKernelsDropletsRequest)
     {
     }
 
@@ -116,7 +118,8 @@ class Droplets extends Resources
     {
     }
 
-    public function listAllNeighbors(ListAllNeighborsDropletsRequest $listAllNeighborsDropletsRequest)
+    public function listAllNeighbors(
+        ListAllNeighborsDropletsRequest $listAllNeighborsDropletsRequest)
     {
     }
 }
