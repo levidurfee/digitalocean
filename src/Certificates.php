@@ -53,7 +53,8 @@ class Certificates extends Resources
      */
     public function retrieve(RetrieveCertificateRequest $retrieveCertificateRequest)
     {
-        return $this->clientAdapter->get($this->endpoint.'/'.$retrieveCertificateRequest->certificate_id, $retrieveCertificateRequest);
+        return $this->clientAdapter->get($this->endpoint.'/'.
+            $retrieveCertificateRequest->certificate_id, $retrieveCertificateRequest);
     }
 
     /**
@@ -65,6 +66,7 @@ class Certificates extends Resources
      */
     public function delete(DeleteCertificateRequest $deleteCertificateRequest)
     {
-        return $this->clientAdapter->delete($this->endpoint.'/'.$deleteCertificateRequest->certificate_id, $deleteCertificateRequest);
+        return $this->clientAdapter->delete($this->endpoint.'/'.
+            $deleteCertificateRequest->certificate_id, $deleteCertificateRequest);
     }
 }

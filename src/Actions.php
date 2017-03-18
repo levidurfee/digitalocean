@@ -34,6 +34,7 @@ class Actions extends Resources
      */
     public function retrieve(RetrieveActionRequest $retrieveActionRequest)
     {
-        return $this->clientAdapter->get($this->endpoint.'/'.$retrieveActionRequest->action_id, $retrieveActionRequest);
+        return $this->clientAdapter->get($this->endpoint.'/'.$retrieveActionRequest->action_id,
+            $retrieveActionRequest);
     }
 }

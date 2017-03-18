@@ -55,7 +55,9 @@ class BlockStorage extends Resources
      */
     public function retrieve(RetrieveBlockStorageRequest $retrieveBlockStorageRequest)
     {
-        return $this->clientAdapter->get($this->endpoint.'/'.$retrieveBlockStorageRequest->volume_id, $retrieveBlockStorageRequest);
+        return $this->clientAdapter->get($this->endpoint.'/'.
+            $retrieveBlockStorageRequest->volume_id,
+            $retrieveBlockStorageRequest);
     }
 
     /**
@@ -65,7 +67,8 @@ class BlockStorage extends Resources
      *
      * @return mixed|null|\Psr\Http\Message\ResponseInterface
      */
-    public function retrieveByName(RetrieveByNameBlockStorageRequest $retrieveByNameBlockStorageRequest)
+    public function retrieveByName(
+        RetrieveByNameBlockStorageRequest $retrieveByNameBlockStorageRequest)
     {
         return $this->clientAdapter->get($this->endpoint, $retrieveByNameBlockStorageRequest);
     }
@@ -77,9 +80,12 @@ class BlockStorage extends Resources
      *
      * @return mixed|null|\Psr\Http\Message\ResponseInterface
      */
-    public function listSnapshots(ListSnapshotsBlockStorageRequest $listSnapshotsBlockStorageRequest)
+    public function listSnapshots(
+        ListSnapshotsBlockStorageRequest $listSnapshotsBlockStorageRequest)
     {
-        return $this->clientAdapter->get($this->endpoint.'/'.$listSnapshotsBlockStorageRequest->volume_id.'/snapshots', $listSnapshotsBlockStorageRequest);
+        return $this->clientAdapter->get($this->endpoint.'/'.
+            $listSnapshotsBlockStorageRequest->volume_id.'/snapshots',
+            $listSnapshotsBlockStorageRequest);
     }
 
     /**
@@ -89,9 +95,12 @@ class BlockStorage extends Resources
      *
      * @return mixed|null|\Psr\Http\Message\ResponseInterface
      */
-    public function createSnapshot(CreateSnapshotBlockStorageRequest $createSnapshotBlockStorageRequest)
+    public function createSnapshot(
+        CreateSnapshotBlockStorageRequest $createSnapshotBlockStorageRequest)
     {
-        return $this->clientAdapter->post($this->endpoint.'/'.$createSnapshotBlockStorageRequest->volume_id.'/snapshots', $createSnapshotBlockStorageRequest);
+        return $this->clientAdapter->post($this->endpoint.'/'.
+            $createSnapshotBlockStorageRequest->volume_id.'/snapshots',
+            $createSnapshotBlockStorageRequest);
     }
 
     /**
@@ -103,7 +112,9 @@ class BlockStorage extends Resources
      */
     public function delete(DeleteBlockStorageRequest $deleteBlockStorageRequest)
     {
-        return $this->clientAdapter->delete($this->endpoint.'/'.$deleteBlockStorageRequest->volume_id, $deleteBlockStorageRequest);
+        return $this->clientAdapter->delete($this->endpoint.'/'.
+            $deleteBlockStorageRequest->volume_id,
+            $deleteBlockStorageRequest);
     }
 
     /**

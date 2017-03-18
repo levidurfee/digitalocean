@@ -29,7 +29,8 @@ class DomainRecords extends Resources
      */
     public function listAll(ListAllDomainRecordsRequest $listAllDomainRecordsRequest)
     {
-        return $this->clientAdapter->get($this->endpoint.'/'.$listAllDomainRecordsRequest->domain_name.'/records', $listAllDomainRecordsRequest);
+        return $this->clientAdapter->get($this->endpoint.'/'.
+            $listAllDomainRecordsRequest->domain_name.'/records', $listAllDomainRecordsRequest);
     }
 
     /**
@@ -41,7 +42,8 @@ class DomainRecords extends Resources
      */
     public function create(CreateDomainRecordsRequest $createDomainRecordsRequest)
     {
-        return $this->clientAdapter->post($this->endpoint.'/'.$createDomainRecordsRequest->domain_name.'/records', $createDomainRecordsRequest);
+        return $this->clientAdapter->post($this->endpoint.'/'.
+            $createDomainRecordsRequest->domain_name.'/records', $createDomainRecordsRequest);
     }
 
     /**
@@ -53,7 +55,9 @@ class DomainRecords extends Resources
      */
     public function retrieve(RetrieveDomainRecordsRequest $retrieveDomainRecordsRequest)
     {
-        return $this->clientAdapter->get($this->endpoint.'/'.$retrieveDomainRecordsRequest->domain_name.'/records/'.$retrieveDomainRecordsRequest->record_id, $retrieveDomainRecordsRequest);
+        return $this->clientAdapter->get($this->endpoint.'/'.
+            $retrieveDomainRecordsRequest->domain_name.'/records/'.
+            $retrieveDomainRecordsRequest->record_id, $retrieveDomainRecordsRequest);
     }
 
     /**
@@ -65,11 +69,15 @@ class DomainRecords extends Resources
      */
     public function update(UpdateDomainRecordsRequest $updateDomainRecordsRequest)
     {
-        return $this->clientAdapter->put($this->endpoint.'/'.$updateDomainRecordsRequest->domain_name.'/records/'.$updateDomainRecordsRequest->record_id, $updateDomainRecordsRequest);
+        return $this->clientAdapter->put($this->endpoint.'/'.
+            $updateDomainRecordsRequest->domain_name.'/records/'.
+            $updateDomainRecordsRequest->record_id, $updateDomainRecordsRequest);
     }
 
     public function delete(DeleteDomainRecordsRequest $deleteDomainRecordsRequest)
     {
-        return $this->clientAdapter->delete($this->endpoint.'/'.$deleteDomainRecordsRequest->domain_name.'/records/'.$deleteDomainRecordsRequest->record_id, $deleteDomainRecordsRequest);
+        return $this->clientAdapter->delete($this->endpoint.'/'.
+            $deleteDomainRecordsRequest->domain_name.'/records/'.
+            $deleteDomainRecordsRequest->record_id, $deleteDomainRecordsRequest);
     }
 }

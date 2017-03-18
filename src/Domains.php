@@ -52,7 +52,8 @@ class Domains extends Resources
      */
     public function retrieve(RetrieveDomainRequest $retrieveDomainRequest)
     {
-        return $this->clientAdapter->get($this->endpoint.'/'.$retrieveDomainRequest->domain_name, $retrieveDomainRequest);
+        return $this->clientAdapter->get($this->endpoint.'/'.$retrieveDomainRequest->domain_name,
+            $retrieveDomainRequest);
     }
 
     /**
@@ -62,6 +63,7 @@ class Domains extends Resources
      */
     public function delete(DeleteDomainRequest $deleteDomainRequest)
     {
-        return $this->clientAdapter->delete($this->endpoint.'/'.$deleteDomainRequest->domain_name, $deleteDomainRequest);
+        return $this->clientAdapter->delete($this->endpoint.'/'.$deleteDomainRequest->domain_name,
+            $deleteDomainRequest);
     }
 }

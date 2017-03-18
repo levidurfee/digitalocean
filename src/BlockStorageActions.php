@@ -33,7 +33,9 @@ class BlockStorageActions extends Resources
      */
     public function attach(AttachVolumeRequest $attachVolumeRequest)
     {
-        return $this->clientAdapter->post($this->endpoint.'/'.$attachVolumeRequest->volume_id.'/actions', $attachVolumeRequest);
+        return $this->clientAdapter->post($this->endpoint.'/'.
+            $attachVolumeRequest->volume_id.'/actions',
+            $attachVolumeRequest);
     }
 
     /**
@@ -57,7 +59,8 @@ class BlockStorageActions extends Resources
      */
     public function remove(RemoveVolumeRequest $removeVolumeRequest)
     {
-        return $this->clientAdapter->post($this->endpoint.'/'.$removeVolumeRequest->volume_id.'/actions', $removeVolumeRequest);
+        return $this->clientAdapter->post($this->endpoint.'/'.
+            $removeVolumeRequest->volume_id.'/actions', $removeVolumeRequest);
     }
 
     /**
@@ -81,7 +84,8 @@ class BlockStorageActions extends Resources
      */
     public function resize(ResizeVolumeRequest $resizeVolumeRequest)
     {
-        return $this->clientAdapter->post($this->endpoint.'/'.$resizeVolumeRequest->volume_id.'/actions', $resizeVolumeRequest);
+        return $this->clientAdapter->post($this->endpoint.'/'.
+            $resizeVolumeRequest->volume_id.'/actions', $resizeVolumeRequest);
     }
 
     /**
@@ -93,7 +97,8 @@ class BlockStorageActions extends Resources
      */
     public function listAll(ListAllActionsRequest $listAllActionsRequest)
     {
-        return $this->clientAdapter->get($this->endpoint.'/'.$listAllActionsRequest->volume_id.'/actions', $listAllActionsRequest);
+        return $this->clientAdapter->get($this->endpoint.'/'.
+            $listAllActionsRequest->volume_id.'/actions', $listAllActionsRequest);
     }
 
     /**
@@ -105,6 +110,8 @@ class BlockStorageActions extends Resources
      */
     public function retrieve(RetrieveActionRequest $retrieveActionRequest)
     {
-        return $this->clientAdapter->get($this->endpoint.'/'.$retrieveActionRequest->volume_id.'/actions/'.$retrieveActionRequest->action_id, $retrieveActionRequest);
+        return $this->clientAdapter->get($this->endpoint.'/'.
+            $retrieveActionRequest->volume_id.'/actions/'.$retrieveActionRequest->action_id,
+            $retrieveActionRequest);
     }
 }
