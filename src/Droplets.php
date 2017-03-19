@@ -97,10 +97,12 @@ class Droplets extends Resources
      * @return mixed|null|\Psr\Http\Message\ResponseInterface
      */
     public function listAvailableKernels(
-        ListAvailableKernelsDropletsRequest $listAvailableKernelsDropletsRequest)
-    {
-        return $this->clientAdapter->get($this->endpoint.'/'.$listAvailableKernelsDropletsRequest->droplet_id
-            .'/kernels', $listAvailableKernelsDropletsRequest);
+        ListAvailableKernelsDropletsRequest $listAvailableKernelsDropletsRequest
+    ) {
+        return $this->clientAdapter->get(
+            $this->endpoint.'/'.$listAvailableKernelsDropletsRequest->droplet_id.'/kernels',
+            $listAvailableKernelsDropletsRequest
+        );
     }
 
     public function listSnapshots(ListSnapshotsDropletRequest $listSnapshotsDropletRequest)
