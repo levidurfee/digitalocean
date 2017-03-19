@@ -9,6 +9,7 @@ use GuzzleHttp\Psr7\Response;
 use wappr\digitalocean\Requests\Droplets\CreateDropletsRequest;
 use wappr\digitalocean\Requests\Droplets\CreateMultipleDropletsRequest;
 use wappr\digitalocean\Requests\Droplets\ListAllDropletsRequest;
+use wappr\digitalocean\Requests\Droplets\ListAvailableKernelsDropletsRequest;
 use wappr\digitalocean\Requests\Droplets\ListByTagDropletRequest;
 use wappr\digitalocean\Requests\Droplets\RetrieveDropletsRequest;
 
@@ -77,6 +78,7 @@ class DropletsTest extends \PHPUnit_Framework_TestCase
             200,
             200,
             204,
+            200,
         ];
         $mock = new MockHandler([
             new Response($responseCodes[0]),
@@ -84,6 +86,7 @@ class DropletsTest extends \PHPUnit_Framework_TestCase
             new Response($responseCodes[2]),
             new Response($responseCodes[3]),
             new Response($responseCodes[4]),
+            new Response($responseCodes[5]),
         ]);
 
         $handler = HandlerStack::create($mock);
@@ -114,6 +117,10 @@ class DropletsTest extends \PHPUnit_Framework_TestCase
             [
                 'method' => 'listByTag',
                 'request' => new ListByTagDropletRequest('webserver'),
+            ],
+            [
+                'method' => 'listAvailableKernels',
+                'request' => new ListAvailableKernelsDropletsRequest('1234'),
             ],
         ];
 

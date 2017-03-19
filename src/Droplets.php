@@ -89,9 +89,18 @@ class Droplets extends Resources
         return $this->clientAdapter->get($this->endpoint, $listByTagDropletRequest);
     }
 
+    /**
+     * List all the available kernels for a Droplet.
+     *
+     * @param ListAvailableKernelsDropletsRequest $listAvailableKernelsDropletsRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function listAvailableKernels(
         ListAvailableKernelsDropletsRequest $listAvailableKernelsDropletsRequest)
     {
+        return $this->clientAdapter->get($this->endpoint.'/'.$listAvailableKernelsDropletsRequest->droplet_id
+            .'/kernels', $listAvailableKernelsDropletsRequest);
     }
 
     public function listSnapshots(ListSnapshotsDropletRequest $listSnapshotsDropletRequest)
