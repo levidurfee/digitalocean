@@ -105,8 +105,19 @@ class Droplets extends Resources
         );
     }
 
+    /**
+     * List the current snapshots of a Droplet.
+     *
+     * @param ListSnapshotsDropletRequest $listSnapshotsDropletRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function listSnapshots(ListSnapshotsDropletRequest $listSnapshotsDropletRequest)
     {
+        return $this->clientAdapter->get(
+            $this->endpoint.'/'.$listSnapshotsDropletRequest->droplet_id.'/snapshots',
+            $listSnapshotsDropletRequest
+        );
     }
 
     public function listBackups(ListBackupsDropletRequest $listBackupsDropletRequest)
