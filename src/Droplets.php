@@ -120,8 +120,19 @@ class Droplets extends Resources
         );
     }
 
+    /**
+     * List all the backups of a Droplet.
+     *
+     * @param ListBackupsDropletRequest $listBackupsDropletRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function listBackups(ListBackupsDropletRequest $listBackupsDropletRequest)
     {
+        return $this->clientAdapter->get(
+            $this->endpoint.'/'.$listBackupsDropletRequest->droplet_id.'/backups',
+            $listBackupsDropletRequest
+        );
     }
 
     public function listActions(ListActionsDropletsRequest $listActionsDropletsRequest)
