@@ -8,6 +8,7 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use wappr\digitalocean\Requests\Droplets\CreateDropletsRequest;
 use wappr\digitalocean\Requests\Droplets\CreateMultipleDropletsRequest;
+use wappr\digitalocean\Requests\Droplets\ListActionsDropletsRequest;
 use wappr\digitalocean\Requests\Droplets\ListAllDropletsRequest;
 use wappr\digitalocean\Requests\Droplets\ListAvailableKernelsDropletsRequest;
 use wappr\digitalocean\Requests\Droplets\ListBackupsDropletRequest;
@@ -83,6 +84,7 @@ class DropletsTest extends \PHPUnit_Framework_TestCase
             200,
             200,
             200,
+            200,
         ];
         $mock = new MockHandler([
             new Response($responseCodes[0]),
@@ -93,6 +95,7 @@ class DropletsTest extends \PHPUnit_Framework_TestCase
             new Response($responseCodes[5]),
             new Response($responseCodes[6]),
             new Response($responseCodes[7]),
+            new Response($responseCodes[8]),
         ]);
 
         $handler = HandlerStack::create($mock);
@@ -135,6 +138,10 @@ class DropletsTest extends \PHPUnit_Framework_TestCase
             [
                 'method' => 'listBackups',
                 'request' => new ListBackupsDropletRequest('1234'),
+            ],
+            [
+                'method' => 'listActions',
+                'request' => new ListActionsDropletsRequest('1234'),
             ],
         ];
 

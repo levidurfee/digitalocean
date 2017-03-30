@@ -135,8 +135,19 @@ class Droplets extends Resources
         );
     }
 
+    /**
+     * List all the actions performed on a Droplet.
+     *
+     * @param ListActionsDropletsRequest $listActionsDropletsRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function listActions(ListActionsDropletsRequest $listActionsDropletsRequest)
     {
+        return $this->clientAdapter->get(
+            $this->endpoint.'/'.$listActionsDropletsRequest->droplet_id.'/actions',
+            $listActionsDropletsRequest
+        );
     }
 
     public function delete(DeleteDropletsRequest $deleteDropletsRequest)
