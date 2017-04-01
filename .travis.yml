@@ -20,7 +20,8 @@ matrix:
     - php: nightly
 
 sudo: false
-
+addons:
+  srcclr: true
 before_script:
   - travis_retry composer self-update
 
