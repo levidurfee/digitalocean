@@ -150,8 +150,17 @@ class Droplets extends Resources
         );
     }
 
+    /**
+     * Delete a Droplet.
+     *
+     * @param DeleteDropletsRequest $deleteDropletsRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function delete(DeleteDropletsRequest $deleteDropletsRequest)
     {
+        return $this->clientAdapter->delete($this->endpoint.'/'.$deleteDropletsRequest->droplet_id,
+            $deleteDropletsRequest);
     }
 
     public function deleteByTag(DeleteByTagDropletsRequest $deleteByTagDropletsRequest)
