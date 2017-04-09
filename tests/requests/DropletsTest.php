@@ -8,6 +8,7 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use wappr\digitalocean\Requests\Droplets\CreateDropletsRequest;
 use wappr\digitalocean\Requests\Droplets\CreateMultipleDropletsRequest;
+use wappr\digitalocean\Requests\Droplets\DeleteByTagDropletsRequest;
 use wappr\digitalocean\Requests\Droplets\DeleteDropletsRequest;
 use wappr\digitalocean\Requests\Droplets\ListActionsDropletsRequest;
 use wappr\digitalocean\Requests\Droplets\ListAllDropletsRequest;
@@ -87,6 +88,7 @@ class DropletsTest extends \PHPUnit_Framework_TestCase
             200,
             200,
             204,
+            204,
         ];
         $mock = new MockHandler([
             new Response($responseCodes[0]),
@@ -99,6 +101,7 @@ class DropletsTest extends \PHPUnit_Framework_TestCase
             new Response($responseCodes[7]),
             new Response($responseCodes[8]),
             new Response($responseCodes[9]),
+            new Response($responseCodes[10]),
         ]);
 
         $handler = HandlerStack::create($mock);
@@ -149,6 +152,10 @@ class DropletsTest extends \PHPUnit_Framework_TestCase
             [
                 'method' => 'delete',
                 'request' => new DeleteDropletsRequest('1234'),
+            ],
+            [
+                'method' => 'deleteByTag',
+                'request' => new DeleteByTagDropletsRequest('tag'),
             ],
         ];
 

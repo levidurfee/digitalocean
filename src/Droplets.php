@@ -163,8 +163,16 @@ class Droplets extends Resources
             $deleteDropletsRequest);
     }
 
+    /**
+     * Delete a Droplet using a tag.
+     *
+     * @param DeleteByTagDropletsRequest $deleteByTagDropletsRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function deleteByTag(DeleteByTagDropletsRequest $deleteByTagDropletsRequest)
     {
+        return $this->clientAdapter->delete($this->endpoint, $deleteByTagDropletsRequest);
     }
 
     public function listNeighbors(ListNeighborsDropletsRequest $listNeighborsDropletsRequest)
