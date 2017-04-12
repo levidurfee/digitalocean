@@ -175,8 +175,19 @@ class Droplets extends Resources
         return $this->clientAdapter->delete($this->endpoint, $deleteByTagDropletsRequest);
     }
 
+    /**
+     * List Droplet neighbors. Howdy.
+     *
+     * @param ListNeighborsDropletsRequest $listNeighborsDropletsRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function listNeighbors(ListNeighborsDropletsRequest $listNeighborsDropletsRequest)
     {
+        return $this->clientAdapter->get(
+            $this->endpoint.'/'.$listNeighborsDropletsRequest->droplet_id.'/neighbors',
+            $listNeighborsDropletsRequest
+        );
     }
 
     public function listAllNeighbors(
