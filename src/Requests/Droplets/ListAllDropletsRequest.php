@@ -2,6 +2,8 @@
 
 namespace wappr\digitalocean\Requests\Droplets;
 
-class ListAllDropletsRequest
+use wappr\digitalocean\RequestContract;
+
+class ListAllDropletsRequest extends RequestContract
 {
 }

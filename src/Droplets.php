@@ -28,56 +28,181 @@ class Droplets extends Resources
 
     private $endpoint = 'droplets';
 
+    /**
+     * Create a new Droplet.
+     *
+     * @param CreateDropletsRequest $createDropletRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function create(CreateDropletsRequest $createDropletRequest)
     {
         return $this->clientAdapter->post($this->endpoint, $createDropletRequest);
     }
 
+    /**
+     * Create multiple Droplets.
+     *
+     * @param CreateMultipleDropletsRequest $createMultipleDropletsRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function createMultiple(CreateMultipleDropletsRequest $createMultipleDropletsRequest)
     {
+        return $this->clientAdapter->post($this->endpoint, $createMultipleDropletsRequest);
     }
 
+    /**
+     * Retrieve information about a Droplet.
+     *
+     * @param RetrieveDropletsRequest $retrieveDropletsRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function retrieve(RetrieveDropletsRequest $retrieveDropletsRequest)
     {
+        return $this->clientAdapter->get($this->endpoint.'/'.$retrieveDropletsRequest->droplet_id,
+            $retrieveDropletsRequest);
     }
 
+    /**
+     * Return a list of all Droplets.
+     *
+     * @param ListAllDropletsRequest $listAllDropletsRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function listAll(ListAllDropletsRequest $listAllDropletsRequest)
     {
+        return $this->clientAdapter->get($this->endpoint, $listAllDropletsRequest);
     }
 
+    /**
+     * List all droplets that have a specific tag.
+     *
+     * @param ListByTagDropletRequest $listByTagDropletRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function listByTag(ListByTagDropletRequest $listByTagDropletRequest)
     {
+        return $this->clientAdapter->get($this->endpoint, $listByTagDropletRequest);
     }
 
-    public function listAvailableKernels(ListAvailableKernelsDropletsRequest $listAvailableKernelsDropletsRequest)
-    {
+    /**
+     * List all the available kernels for a Droplet.
+     *
+     * @param ListAvailableKernelsDropletsRequest $listAvailableKernelsDropletsRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
+    public function listAvailableKernels(
+        ListAvailableKernelsDropletsRequest $listAvailableKernelsDropletsRequest
+    ) {
+        return $this->clientAdapter->get(
+            $this->endpoint.'/'.$listAvailableKernelsDropletsRequest->droplet_id.'/kernels',
+            $listAvailableKernelsDropletsRequest
+        );
     }
 
+    /**
+     * List the current snapshots of a Droplet.
+     *
+     * @param ListSnapshotsDropletRequest $listSnapshotsDropletRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function listSnapshots(ListSnapshotsDropletRequest $listSnapshotsDropletRequest)
     {
+        return $this->clientAdapter->get(
+            $this->endpoint.'/'.$listSnapshotsDropletRequest->droplet_id.'/snapshots',
+            $listSnapshotsDropletRequest
+        );
     }
 
+    /**
+     * List all the backups of a Droplet.
+     *
+     * @param ListBackupsDropletRequest $listBackupsDropletRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function listBackups(ListBackupsDropletRequest $listBackupsDropletRequest)
     {
+        return $this->clientAdapter->get(
+            $this->endpoint.'/'.$listBackupsDropletRequest->droplet_id.'/backups',
+            $listBackupsDropletRequest
+        );
     }
 
+    /**
+     * List all the actions performed on a Droplet.
+     *
+     * @param ListActionsDropletsRequest $listActionsDropletsRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function listActions(ListActionsDropletsRequest $listActionsDropletsRequest)
     {
+        return $this->clientAdapter->get(
+            $this->endpoint.'/'.$listActionsDropletsRequest->droplet_id.'/actions',
+            $listActionsDropletsRequest
+        );
     }
 
+    /**
+     * Delete a Droplet.
+     *
+     * @param DeleteDropletsRequest $deleteDropletsRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function delete(DeleteDropletsRequest $deleteDropletsRequest)
     {
+        return $this->clientAdapter->delete($this->endpoint.'/'.$deleteDropletsRequest->droplet_id,
+            $deleteDropletsRequest);
     }
 
+    /**
+     * Delete a Droplet using a tag.
+     *
+     * @param DeleteByTagDropletsRequest $deleteByTagDropletsRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function deleteByTag(DeleteByTagDropletsRequest $deleteByTagDropletsRequest)
     {
+        return $this->clientAdapter->delete($this->endpoint, $deleteByTagDropletsRequest);
     }
 
+    /**
+     * List Droplet neighbors. Howdy.
+     *
+     * @param ListNeighborsDropletsRequest $listNeighborsDropletsRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function listNeighbors(ListNeighborsDropletsRequest $listNeighborsDropletsRequest)
     {
+        return $this->clientAdapter->get(
+            $this->endpoint.'/'.$listNeighborsDropletsRequest->droplet_id.'/neighbors',
+            $listNeighborsDropletsRequest
+        );
     }
 
-    public function listAllNeighbors(ListAllNeighborsDropletsRequest $listAllNeighborsDropletsRequest)
+    /**
+     * List ALL the neighbors. okay?
+     *
+     * @param ListAllNeighborsDropletsRequest $listAllNeighborsDropletsRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
+    public function listAllNeighbors(
+        ListAllNeighborsDropletsRequest $listAllNeighborsDropletsRequest)
     {
+        return $this->clientAdapter->get(
+            'reports/droplet_neighbors',
+            $listAllNeighborsDropletsRequest
+        );
     }
 }

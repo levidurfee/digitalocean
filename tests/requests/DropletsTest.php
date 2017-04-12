@@ -7,6 +7,18 @@ use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use wappr\digitalocean\Requests\Droplets\CreateDropletsRequest;
+use wappr\digitalocean\Requests\Droplets\CreateMultipleDropletsRequest;
+use wappr\digitalocean\Requests\Droplets\DeleteByTagDropletsRequest;
+use wappr\digitalocean\Requests\Droplets\DeleteDropletsRequest;
+use wappr\digitalocean\Requests\Droplets\ListActionsDropletsRequest;
+use wappr\digitalocean\Requests\Droplets\ListAllDropletsRequest;
+use wappr\digitalocean\Requests\Droplets\ListAllNeighborsDropletsRequest;
+use wappr\digitalocean\Requests\Droplets\ListAvailableKernelsDropletsRequest;
+use wappr\digitalocean\Requests\Droplets\ListBackupsDropletRequest;
+use wappr\digitalocean\Requests\Droplets\ListByTagDropletRequest;
+use wappr\digitalocean\Requests\Droplets\ListNeighborsDropletsRequest;
+use wappr\digitalocean\Requests\Droplets\ListSnapshotsDropletRequest;
+use wappr\digitalocean\Requests\Droplets\RetrieveDropletsRequest;
 
 class DropletsTest extends \PHPUnit_Framework_TestCase
 {
@@ -63,5 +75,110 @@ class DropletsTest extends \PHPUnit_Framework_TestCase
     public function testCreateDropletSizeException()
     {
         new CreateDropletsRequest('name', 'nyc2', '1', 'ubuntu');
+    }
+
+    public function testSuccessfulRequests()
+    {
+        $responseCodes = [
+            200,
+            200,
+            200,
+            200,
+            204,
+            200,
+            200,
+            200,
+            200,
+            204,
+            204,
+            200,
+            200,
+        ];
+        $mock = new MockHandler([
+            new Response($responseCodes[0]),
+            new Response($responseCodes[1]),
+            new Response($responseCodes[2]),
+            new Response($responseCodes[3]),
+            new Response($responseCodes[4]),
+            new Response($responseCodes[5]),
+            new Response($responseCodes[6]),
+            new Response($responseCodes[7]),
+            new Response($responseCodes[8]),
+            new Response($responseCodes[9]),
+            new Response($responseCodes[10]),
+            new Response($responseCodes[11]),
+            new Response($responseCodes[12]),
+        ]);
+
+        $handler = HandlerStack::create($mock);
+        $client = new Client(['handler' => $handler]);
+        $certificates = new Droplets($client);
+
+        $requests = [
+            [
+                'method' => 'create',
+                'request' => new CreateDropletsRequest(
+                    'name', 'nyc1', '512mb', 'ubuntu'
+                ),
+            ],
+            [
+                'method' => 'createMultiple',
+                'request' => new CreateMultipleDropletsRequest(
+                    ['name1', 'name2'], 'nyc2', '512mb', 'ubuntu'
+                ),
+            ],
+            [
+                'method' => 'retrieve',
+                'request' => new RetrieveDropletsRequest('1234'),
+            ],
+            [
+                'method' => 'listAll',
+                'request' => new ListAllDropletsRequest,
+            ],
+            [
+                'method' => 'listByTag',
+                'request' => new ListByTagDropletRequest('webserver'),
+            ],
+            [
+                'method' => 'listAvailableKernels',
+                'request' => new ListAvailableKernelsDropletsRequest('1234'),
+            ],
+            [
+                'method' => 'listSnapshots',
+                'request' => new ListSnapshotsDropletRequest('1234'),
+            ],
+            [
+                'method' => 'listBackups',
+                'request' => new ListBackupsDropletRequest('1234'),
+            ],
+            [
+                'method' => 'listActions',
+                'request' => new ListActionsDropletsRequest('1234'),
+            ],
+            [
+                'method' => 'delete',
+                'request' => new DeleteDropletsRequest('1234'),
+            ],
+            [
+                'method' => 'deleteByTag',
+                'request' => new DeleteByTagDropletsRequest('tag'),
+            ],
+            [
+                'method' => 'listNeighbors',
+                'request' => new ListNeighborsDropletsRequest('1234'),
+            ],
+            [
+                'method' => 'listAllNeighbors',
+                'request' => new ListAllNeighborsDropletsRequest,
+            ],
+        ];
+
+        $i = 0; // iterator
+        foreach ($requests as $request) {
+            $result = $certificates->{$request['method']}($request['request']);
+            $this->assertEquals($result->getStatusCode(), $responseCodes[$i]);
+            $this->assertInstanceOf(Response::class, $result);
+            ++$i;
+        }
     }
 }
