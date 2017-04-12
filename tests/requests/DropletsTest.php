@@ -12,6 +12,7 @@ use wappr\digitalocean\Requests\Droplets\DeleteByTagDropletsRequest;
 use wappr\digitalocean\Requests\Droplets\DeleteDropletsRequest;
 use wappr\digitalocean\Requests\Droplets\ListActionsDropletsRequest;
 use wappr\digitalocean\Requests\Droplets\ListAllDropletsRequest;
+use wappr\digitalocean\Requests\Droplets\ListAllNeighborsDropletsRequest;
 use wappr\digitalocean\Requests\Droplets\ListAvailableKernelsDropletsRequest;
 use wappr\digitalocean\Requests\Droplets\ListBackupsDropletRequest;
 use wappr\digitalocean\Requests\Droplets\ListByTagDropletRequest;
@@ -91,6 +92,7 @@ class DropletsTest extends \PHPUnit_Framework_TestCase
             204,
             204,
             200,
+            200,
         ];
         $mock = new MockHandler([
             new Response($responseCodes[0]),
@@ -105,6 +107,7 @@ class DropletsTest extends \PHPUnit_Framework_TestCase
             new Response($responseCodes[9]),
             new Response($responseCodes[10]),
             new Response($responseCodes[11]),
+            new Response($responseCodes[12]),
         ]);
 
         $handler = HandlerStack::create($mock);
@@ -163,6 +166,10 @@ class DropletsTest extends \PHPUnit_Framework_TestCase
             [
                 'method' => 'listNeighbors',
                 'request' => new ListNeighborsDropletsRequest('1234'),
+            ],
+            [
+                'method' => 'listAllNeighbors',
+                'request' => new ListAllNeighborsDropletsRequest,
             ],
         ];
 

@@ -190,8 +190,19 @@ class Droplets extends Resources
         );
     }
 
+    /**
+     * List ALL the neighbors. okay?
+     *
+     * @param ListAllNeighborsDropletsRequest $listAllNeighborsDropletsRequest
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
     public function listAllNeighbors(
         ListAllNeighborsDropletsRequest $listAllNeighborsDropletsRequest)
     {
+        return $this->clientAdapter->get(
+            'reports/droplet_neighbors',
+            $listAllNeighborsDropletsRequest
+        );
     }
 }
