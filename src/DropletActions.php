@@ -2,91 +2,92 @@
 
 namespace wappr\digitalocean;
 
-use wappr\digitalocean\Requests\DropletActions\ChangeKernelRequest;
-use wappr\digitalocean\Requests\DropletActions\DisableBackupsRequest;
-use wappr\digitalocean\Requests\DropletActions\EnableBackupsRequest;
-use wappr\digitalocean\Requests\DropletActions\EnableIPv6Request;
-use wappr\digitalocean\Requests\DropletActions\EnablePrivateNetworkingRequest;
-use wappr\digitalocean\Requests\DropletActions\PasswordResetRequest;
-use wappr\digitalocean\Requests\DropletActions\PowerCycleRequest;
-use wappr\digitalocean\Requests\DropletActions\PowerOffRequest;
-use wappr\digitalocean\Requests\DropletActions\PowerOnRequest;
-use wappr\digitalocean\Requests\DropletActions\RebootRequest;
-use wappr\digitalocean\Requests\DropletActions\RebuildRequest;
-use wappr\digitalocean\Requests\DropletActions\RenameRequest;
-use wappr\digitalocean\Requests\DropletActions\ResizeRequest;
-use wappr\digitalocean\Requests\DropletActions\RestoreRequest;
-use wappr\digitalocean\Requests\DropletActions\RetrieveRequest;
-use wappr\digitalocean\Requests\DropletActions\ShutdownRequest;
-use wappr\digitalocean\Requests\DropletActions\SnapshotRequest;
+use wappr\digitalocean\Requests\DropletActions\DropletActionsRequest;
 
 class DropletActions extends Resources
 {
-    public function enableBackups(EnableBackupsRequest $enableBackupsRequest)
+    private $endpoint = 'droplets';
+
+    /**
+     * Enable backups for a Droplet.
+     *
+     * @param DropletActionsRequest $dropletActionsRequest
+     *
+     * @return $this
+     */
+    public function enableBackups(DropletActionsRequest $dropletActionsRequest)
+    {
+        $dropletActionsRequest->type = 'enable_backups';
+
+        $this->clientAdapter->post(
+            $this->endpoint.'/'.$dropletActionsRequest->droplet_id.'/actions',
+            $dropletActionsRequest
+        );
+
+        return $this;
+    }
+
+    public function disableBackups(DropletActionsRequest $dropletActionsRequest)
     {
     }
 
-    public function disableBackups(DisableBackupsRequest $disableBackupsRequest)
+    public function reboot(DropletActionsRequest $dropletActionsRequest)
     {
     }
 
-    public function reboot(RebootRequest $rebootRequest)
+    public function powerCycle(DropletActionsRequest $dropletActionsRequest)
     {
     }
 
-    public function powerCycle(PowerCycleRequest $powerCycleRequest)
+    public function shutdown(DropletActionsRequest $dropletActionsRequest)
     {
     }
 
-    public function shutdown(ShutdownRequest $shutdownRequest)
+    public function powerOff(DropletActionsRequest $dropletActionsRequest)
     {
     }
 
-    public function powerOff(PowerOffRequest $powerOffRequest)
+    public function powerOn(DropletActionsRequest $dropletActionsRequest)
     {
     }
 
-    public function powerOn(PowerOnRequest $powerOnRequest)
+    public function restore(DropletActionsRequest $dropletActionsRequest)
     {
     }
 
-    public function restore(RestoreRequest $restoreRequest)
+    public function passwordReset(DropletActionsRequest $dropletActionsRequest)
     {
     }
 
-    public function passwordReset(PasswordResetRequest $passwordResetRequest)
+    public function resize(DropletActionsRequest $dropletActionsRequest)
     {
     }
 
-    public function resize(ResizeRequest $resizeRequest)
+    public function rebuild(DropletActionsRequest $dropletActionsRequest)
     {
     }
 
-    public function rebuild(RebuildRequest $rebuildRequest)
+    public function rename(DropletActionsRequest $dropletActionsRequest)
     {
     }
 
-    public function rename(RenameRequest $renameRequest)
+    public function changeKernel(DropletActionsRequest $dropletActionsRequest)
     {
     }
 
-    public function changeKernel(ChangeKernelRequest $changeKernelRequest)
+    public function enableIPv6(DropletActionsRequest $dropletActionsRequest)
     {
     }
 
-    public function enableIPv6(EnableIPv6Request $enableIPv6Request)
+    public function enablePrivateNetworking(DropletActionsRequest $dropletActionsRequest)
     {
     }
 
-    public function enablePrivateNetworking(EnablePrivateNetworkingRequest $enablePrivateNetworkingRequest)
+    public function snapshot(DropletActionsRequest $dropletActionsRequest)
     {
     }
 
-    public function snapshot(SnapshotRequest $snapshotRequest)
-    {
-    }
-
-    public function retrieve(RetrieveRequest $retrieveRequest)
+    public function retrieve(DropletActionsRequest $dropletActionsRequest)
     {
     }
 }
