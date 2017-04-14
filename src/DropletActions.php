@@ -145,8 +145,23 @@ class DropletActions extends Resources
         return $this;
     }
 
-    public function resize(DropletActionsRequest $dropletActionsRequest)
+    /**
+     * Resize a Droplet.
+     *
+     * @param DropletActionsRequest $dropletActionsRequest
+     * @param $size
+     * @param bool $disk
+     *
+     * @return $this
+     */
+    public function resize(DropletActionsRequest $dropletActionsRequest, $size, $disk = false)
     {
+        $dropletActionsRequest->type = 'resize';
+        $dropletActionsRequest->size = $size;
+        $dropletActionsRequest->disk = $disk;
+        $this->send($dropletActionsRequest);
+
+        return $this;
     }
 
     public function rebuild(DropletActionsRequest $dropletActionsRequest)

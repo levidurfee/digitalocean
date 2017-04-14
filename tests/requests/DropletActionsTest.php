@@ -32,6 +32,7 @@ class DropletActionsTest extends \PHPUnit_Framework_TestCase
             'powerOn',
             //'restore', // @todo add test for this
             'passwordReset',
+            //'resize', // @todo add test for this
         ];
 
         foreach ($methods as $method) {
