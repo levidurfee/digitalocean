@@ -262,8 +262,20 @@ class DropletActions extends Resources
         return $this;
     }
 
-    public function retrieve(DropletActionsRequest $dropletActionsRequest)
+    /**
+     * Retrieve an action.
+     *
+     * @param DropletActionsRequest $dropletActionsRequest
+     * @param string $actionId
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
+    public function retrieve(DropletActionsRequest $dropletActionsRequest, $actionId)
     {
+        return $this->clientAdapter->get(
+            $this->endpoint.'/'.$dropletActionsRequest->droplet_id.'/actions/'.$actionId,
+            $dropletActionsRequest
+        );
     }
 
     private function send(DropletActionsRequest $dropletActionsRequest)
