@@ -164,8 +164,21 @@ class DropletActions extends Resources
         return $this;
     }
 
-    public function rebuild(DropletActionsRequest $dropletActionsRequest)
+    /**
+     * Rebuild a Droplet using an image.
+     *
+     * @param DropletActionsRequest $dropletActionsRequest
+     * @param string $image
+     *
+     * @return $this
+     */
+    public function rebuild(DropletActionsRequest $dropletActionsRequest, $image)
     {
+        $dropletActionsRequest->type = 'rebuild';
+        $dropletActionsRequest->image = $image;
+        $this->send($dropletActionsRequest);
+
+        return $this;
     }
 
     public function rename(DropletActionsRequest $dropletActionsRequest)
