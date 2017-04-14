@@ -30,6 +30,7 @@ class DropletActionsTest extends \PHPUnit_Framework_TestCase
             'shutdown',
             'powerOff',
             'powerOn',
+            //'restore', // @todo add test for this
         ];
 
         foreach ($methods as $method) {

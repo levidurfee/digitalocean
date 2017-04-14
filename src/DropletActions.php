@@ -113,8 +113,21 @@ class DropletActions extends Resources
         return $this;
     }
 
-    public function restore(DropletActionsRequest $dropletActionsRequest)
+    /**
+     * Restore a Droplet using an image.
+     *
+     * @param DropletActionsRequest $dropletActionsRequest
+     * @param $image
+     *
+     * @return $this
+     */
+    public function restore(DropletActionsRequest $dropletActionsRequest, $image)
     {
+        $dropletActionsRequest->type = 'restore';
+        $dropletActionsRequest->image = $image;
+        $this->send($dropletActionsRequest);
+
+        return $this;
     }
 
     public function passwordReset(DropletActionsRequest $dropletActionsRequest)
