@@ -278,6 +278,11 @@ class DropletActions extends Resources
         );
     }
 
+    /**
+     * POST the data.
+     *
+     * @param DropletActionsRequest $dropletActionsRequest
+     */
     private function send(DropletActionsRequest $dropletActionsRequest)
     {
         $this->clientAdapter->post(
