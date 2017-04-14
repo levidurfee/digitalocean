@@ -181,8 +181,21 @@ class DropletActions extends Resources
         return $this;
     }
 
-    public function rename(DropletActionsRequest $dropletActionsRequest)
+    /**
+     * Rename a Droplet.
+     *
+     * @param DropletActionsRequest $dropletActionsRequest
+     * @param string $name
+     *
+     * @return $this
+     */
+    public function rename(DropletActionsRequest $dropletActionsRequest, $name)
     {
+        $dropletActionsRequest->type = 'rename';
+        $dropletActionsRequest->name = $name;
+        $this->send($dropletActionsRequest);
+
+        return $this;
     }
 
     public function changeKernel(DropletActionsRequest $dropletActionsRequest)
