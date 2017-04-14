@@ -68,8 +68,19 @@ class DropletActions extends Resources
         return $this;
     }
 
+    /**
+     * Shutdown a Droplet.
+     *
+     * @param DropletActionsRequest $dropletActionsRequest
+     *
+     * @return $this
+     */
     public function shutdown(DropletActionsRequest $dropletActionsRequest)
     {
+        $dropletActionsRequest->type = 'shutdown';
+        $this->send($dropletActionsRequest);
+
+        return $this;
     }
 
     public function powerOff(DropletActionsRequest $dropletActionsRequest)
