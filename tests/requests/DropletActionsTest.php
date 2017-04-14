@@ -24,6 +24,7 @@ class DropletActionsTest extends \PHPUnit_Framework_TestCase
     {
         $methods = [
             'enableBackups',
+            'disableBackups',
         ];
 
         foreach ($methods as $method) {

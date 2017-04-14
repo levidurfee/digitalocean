@@ -23,8 +23,19 @@ class DropletActions extends Resources
         return $this;
     }
 
+    /**
+     * Disable backups for a Droplet.
+     *
+     * @param DropletActionsRequest $dropletActionsRequest
+     *
+     * @return $this
+     */
     public function disableBackups(DropletActionsRequest $dropletActionsRequest)
     {
+        $dropletActionsRequest->type = 'disable_backups';
+        $this->send($dropletActionsRequest);
+
+        return $this;
     }
 
     public function reboot(DropletActionsRequest $dropletActionsRequest)
