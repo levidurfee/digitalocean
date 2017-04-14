@@ -130,8 +130,19 @@ class DropletActions extends Resources
         return $this;
     }
 
+    /**
+     * Reset a password for a Droplet.
+     *
+     * @param DropletActionsRequest $dropletActionsRequest
+     *
+     * @return $this
+     */
     public function passwordReset(DropletActionsRequest $dropletActionsRequest)
     {
+        $dropletActionsRequest->type = 'password_reset';
+        $this->send($dropletActionsRequest);
+
+        return $this;
     }
 
     public function resize(DropletActionsRequest $dropletActionsRequest)
