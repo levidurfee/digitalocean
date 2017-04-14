@@ -18,11 +18,7 @@ class DropletActions extends Resources
     public function enableBackups(DropletActionsRequest $dropletActionsRequest)
     {
         $dropletActionsRequest->type = 'enable_backups';
-
-        $this->clientAdapter->post(
-            $this->endpoint.'/'.$dropletActionsRequest->droplet_id.'/actions',
-            $dropletActionsRequest
-        );
+        $this->send($dropletActionsRequest);
 
         return $this;
     }
@@ -89,5 +85,13 @@ class DropletActions extends Resources
 
     public function retrieve(DropletActionsRequest $dropletActionsRequest)
     {
+    }
+
+    private function send(DropletActionsRequest $dropletActionsRequest)
+    {
+        $this->clientAdapter->post(
+            $this->endpoint.'/'.$dropletActionsRequest->droplet_id.'/actions',
+            $dropletActionsRequest
+        );
     }
 }
