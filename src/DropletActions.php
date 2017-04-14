@@ -198,8 +198,21 @@ class DropletActions extends Resources
         return $this;
     }
 
-    public function changeKernel(DropletActionsRequest $dropletActionsRequest)
+    /**
+     * Change Droplet's kernel.
+     *
+     * @param DropletActionsRequest $dropletActionsRequest
+     * @param int $kernel
+     *
+     * @return $this
+     */
+    public function changeKernel(DropletActionsRequest $dropletActionsRequest, $kernel)
     {
+        $dropletActionsRequest->type = 'change_kernel';
+        $dropletActionsRequest->kernel = $kernel;
+        $this->send($dropletActionsRequest);
+
+        return $this;
     }
 
     public function enableIPv6(DropletActionsRequest $dropletActionsRequest)
