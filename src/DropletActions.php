@@ -245,8 +245,21 @@ class DropletActions extends Resources
         return $this;
     }
 
-    public function snapshot(DropletActionsRequest $dropletActionsRequest)
+    /**
+     * Take a snapshot of a Droplet.
+     *
+     * @param DropletActionsRequest $dropletActionsRequest
+     * @param string $name
+     *
+     * @return $this
+     */
+    public function snapshot(DropletActionsRequest $dropletActionsRequest, $name)
     {
+        $dropletActionsRequest->type = 'snapshot';
+        $dropletActionsRequest->name = $name;
+        $this->send($dropletActionsRequest);
+
+        return $this;
     }
 
     public function retrieve(DropletActionsRequest $dropletActionsRequest)
