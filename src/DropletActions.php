@@ -215,8 +215,19 @@ class DropletActions extends Resources
         return $this;
     }
 
+    /**
+     * Enable IPv6 for a Droplet.
+     *
+     * @param DropletActionsRequest $dropletActionsRequest
+     *
+     * @return $this
+     */
     public function enableIPv6(DropletActionsRequest $dropletActionsRequest)
     {
+        $dropletActionsRequest->type = 'enable_ipv6';
+        $this->send($dropletActionsRequest);
+
+        return $this;
     }
 
     public function enablePrivateNetworking(DropletActionsRequest $dropletActionsRequest)

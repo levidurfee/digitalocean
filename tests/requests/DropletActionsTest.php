@@ -36,6 +36,7 @@ class DropletActionsTest extends \PHPUnit_Framework_TestCase
             //'rebuild', // @todo add test for this
             //'rename', // @todo add test for this
             //'changeKernel', // @todo add test for this
+            'enableIPv6',
         ];
 
         foreach ($methods as $method) {
