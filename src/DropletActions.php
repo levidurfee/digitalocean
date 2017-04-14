@@ -230,8 +230,19 @@ class DropletActions extends Resources
         return $this;
     }
 
+    /**
+     * Enable private networking for a Droplet.
+     *
+     * @param DropletActionsRequest $dropletActionsRequest
+     *
+     * @return $this
+     */
     public function enablePrivateNetworking(DropletActionsRequest $dropletActionsRequest)
     {
+        $dropletActionsRequest->type = 'enable_private_networking';
+        $this->send($dropletActionsRequest);
+
+        return $this;
     }
 
     public function snapshot(DropletActionsRequest $dropletActionsRequest)
