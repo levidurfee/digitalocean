@@ -53,8 +53,19 @@ class DropletActions extends Resources
         return $this;
     }
 
+    /**
+     * Power cycle a Droplet.
+     *
+     * @param DropletActionsRequest $dropletActionsRequest
+     *
+     * @return $this
+     */
     public function powerCycle(DropletActionsRequest $dropletActionsRequest)
     {
+        $dropletActionsRequest->type = 'power_cycle';
+        $this->send($dropletActionsRequest);
+
+        return $this;
     }
 
     public function shutdown(DropletActionsRequest $dropletActionsRequest)
