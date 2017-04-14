@@ -38,8 +38,19 @@ class DropletActions extends Resources
         return $this;
     }
 
+    /**
+     * Reboot a Droplet.
+     *
+     * @param DropletActionsRequest $dropletActionsRequest
+     *
+     * @return $this
+     */
     public function reboot(DropletActionsRequest $dropletActionsRequest)
     {
+        $dropletActionsRequest->type = 'reboot';
+        $this->send($dropletActionsRequest);
+
+        return $this;
     }
 
     public function powerCycle(DropletActionsRequest $dropletActionsRequest)
