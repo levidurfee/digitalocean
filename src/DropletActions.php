@@ -98,8 +98,19 @@ class DropletActions extends Resources
         return $this;
     }
 
+    /**
+     * Power on a Droplet.
+     *
+     * @param DropletActionsRequest $dropletActionsRequest
+     *
+     * @return $this
+     */
     public function powerOn(DropletActionsRequest $dropletActionsRequest)
     {
+        $dropletActionsRequest->type = 'power_on';
+        $this->send($dropletActionsRequest);
+
+        return $this;
     }
 
     public function restore(DropletActionsRequest $dropletActionsRequest)
