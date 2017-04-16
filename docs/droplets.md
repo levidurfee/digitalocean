@@ -108,6 +108,8 @@ Retrieve a Droplet
 
 Get information on a Droplet using the Droplet ID.
 
+### Example
+
 ```php
 <?php
 
@@ -116,8 +118,7 @@ use wappr\digitalocean\Requests\Droplets\RetrieveDropletsRequest;
 
 include 'vendor/autoload.php';
 $resource = new Droplets;
-$response = $resource->retrieve(
-    new RetrieveDropletsRequest('1234'/* droplet id */));
+$response = $resource->retrieve(new RetrieveDropletsRequest('1234'/* droplet id */));
 var_dump($response->getStatusCode()); // 200
 ```
 
@@ -126,3 +127,26 @@ var_dump($response->getStatusCode()); // 200
 | Name             | Description                       | Type   | Required |
 |------------------|-----------------------------------|--------|----------|
 | `droplet_id`     | The Droplet's ID                  | string | *        |
+
+List all Droplets
+-----------------
+
+This will list all the Droplets in your account.
+
+### Example
+
+```php
+<?php
+
+use \wappr\digitalocean\Droplets;
+use wappr\digitalocean\Requests\Droplets\ListAllDropletsRequest;
+
+include 'vendor/autoload.php';
+$resource = new Droplets;
+$response = $resource->listAll(new ListAllDropletsRequest);
+var_dump($response->getStatusCode()); // 200
+```
+
+### ListAllDropletsRequest properties
+
+None are required or accepted for this request.
