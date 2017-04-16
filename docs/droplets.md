@@ -102,3 +102,8 @@ var_dump($response->getStatusCode()); // 200
 | `monitoring`     | If you want monitoring enabled    | bool   |          |
 | `volume`         | Flat array of volumes to attach   | string |          |
 | `tags`           | Tags associated with the Droplet  | array  |          |
+
+Retrieve a Droplet
+------------------
+
+Get information on a Droplet using the Droplet ID.
