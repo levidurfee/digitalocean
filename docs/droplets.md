@@ -120,3 +120,9 @@ $response = $resource->retrieve(
     new RetrieveDropletsRequest('1234'/* droplet id */));
 var_dump($response->getStatusCode()); // 200
 ```
+
+### RetrieveDropletsRequest properties
+
+| Name             | Description                       | Type   | Required |
+|------------------|-----------------------------------|--------|----------|
+| `droplet_id`     | The Droplet's ID                  | string | *        |
