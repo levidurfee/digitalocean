@@ -107,3 +107,16 @@ Retrieve a Droplet
 ------------------
 
 Get information on a Droplet using the Droplet ID.
+
+```php
+<?php
+
+use \wappr\digitalocean\Droplets;
+use wappr\digitalocean\Requests\Droplets\RetrieveDropletsRequest;
+
+include 'vendor/autoload.php';
+$resource = new Droplets;
+$response = $resource->retrieve(
+    new RetrieveDropletsRequest('1234'/* droplet id */));
+var_dump($response->getStatusCode()); // 200
+```
