@@ -150,3 +150,28 @@ var_dump($response->getStatusCode()); // 200
 ### ListAllDropletsRequest properties
 
 None are required or accepted for this request.
+
+List Droplets by Tag
+--------------------
+
+Find all the Droplets that have the tag you specify.
+
+### Example
+
+```php
+<?php
+
+use \wappr\digitalocean\Droplets;
+use wappr\digitalocean\Requests\Droplets\ListByTagDropletRequest;
+
+include 'vendor/autoload.php';
+$resource = new Droplets;
+$response = $resource->listByTag(new ListByTagDropletRequest('web_servers'/* tag */));
+var_dump($response->getStatusCode()); // 200
+```
+
+### ListByTagDropletRequest properties
+
+| Name             | Description                       | Type   | Required |
+|------------------|-----------------------------------|--------|----------|
+| `tag`            | The tag you want to search        | string | *        |
