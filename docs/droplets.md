@@ -310,3 +310,30 @@ var_dump($response->getStatusCode()); // 200
 | Name             | Description                       | Type   | Required |
 |------------------|-----------------------------------|--------|----------|
 | `droplet_id`     | The Droplet's ID                  | string | *        |
+
+Delete Droplets by Tag
+----------------------
+
+Permanently delete Droplets by their tag. You can't undo this.
+
+### Example
+
+```php
+<?php
+
+use \wappr\digitalocean\Droplets;
+use wappr\digitalocean\Requests\Droplets\DeleteByTagDropletsRequest;
+
+include 'vendor/autoload.php';
+$resource = new Droplets;
+$response = $resource->deleteByTag(
+    new DeleteByTagDropletsRequest('test_servers'/* tag name */)
+);
+var_dump($response->getStatusCode()); // 200
+```
+
+### DeleteByTagDropletsRequest properties
+
+| Name             | Description                          | Type   | Required |
+|------------------|--------------------------------------|--------|----------|
+| `tag_name`       | The tag associated with the Droplets | string | *        |
