@@ -337,3 +337,30 @@ var_dump($response->getStatusCode()); // 200
 | Name             | Description                          | Type   | Required |
 |------------------|--------------------------------------|--------|----------|
 | `tag_name`       | The tag associated with the Droplets | string | *        |
+
+List Neighbors for a Droplet
+----------------------------
+
+Retrieve a list of Droplets that are running on the same server.
+
+### Example
+
+```php
+<?php
+
+use \wappr\digitalocean\Droplets;
+use wappr\digitalocean\Requests\Droplets\ListNeighborsDropletsRequest;
+
+include 'vendor/autoload.php';
+$resource = new Droplets;
+$response = $resource->listNeighbors(
+    new ListNeighborsDropletsRequest('test_servers'/* tag name */)
+);
+var_dump($response->getStatusCode()); // 200
+```
+
+### ListNeighborsDropletsRequest properties
+
+| Name             | Description                       | Type   | Required |
+|------------------|-----------------------------------|--------|----------|
+| `droplet_id`     | The Droplet's ID                  | string | *        |
