@@ -364,3 +364,28 @@ var_dump($response->getStatusCode()); // 200
 | Name             | Description                       | Type   | Required |
 |------------------|-----------------------------------|--------|----------|
 | `droplet_id`     | The Droplet's ID                  | string | *        |
+
+List All Droplet Neighbors
+--------------------------
+
+Retrieve a list of Droplets that are running on the same physical hardware.
+
+### Example
+
+```php
+<?php
+
+use \wappr\digitalocean\Droplets;
+use wappr\digitalocean\Requests\Droplets\ListAllNeighborsDropletsRequest;
+
+include 'vendor/autoload.php';
+$resource = new Droplets;
+$response = $resource->listAllNeighbors(
+    new ListAllNeighborsDropletsRequest
+);
+var_dump($response->getStatusCode()); // 200
+```
+
+### ListAllNeighborsDropletsRequest properties
+
+None.
