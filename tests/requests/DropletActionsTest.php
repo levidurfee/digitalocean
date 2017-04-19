@@ -20,6 +20,17 @@ class DropletActionsTest extends \PHPUnit_Framework_TestCase
      */
     protected $dropletActions;
 
+    public function setUp()
+    {
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar']),
+            new Response(204, []),
+        ]);
+        $handler = HandlerStack::create($mock);
+        $this->client = new Client(['handler' => $handler]);
+        $this->dropletActions = new DropletActions($this->client);
+    }
+
     public function testSuccessfulRequests()
     {
         $methods = [
@@ -30,7 +41,6 @@ class DropletActionsTest extends \PHPUnit_Framework_TestCase
             'shutdown',
             'powerOff',
             'powerOn',
-            //'restore', // @todo add test for this
             'passwordReset',
             //'resize', // @todo add test for this
             //'rebuild', // @todo add test for this
@@ -54,5 +64,12 @@ class DropletActionsTest extends \PHPUnit_Framework_TestCase
 
             $this->assertInstanceOf(DropletActions::class, $result);
         }
+    }
+
+    public function testRestore()
+    {
+        $request = new DropletActionsRequest('1123');
+        $result = $this->dropletActions->restore($request, '1234'/* image id */);
+        $this->assertInstanceOf(DropletActions::class, $result);
     }
 }
