@@ -175,3 +175,30 @@ var_dump($response->getStatusCode()); // 200
 | Name             | Description                       | Type   | Required |
 |------------------|-----------------------------------|--------|----------|
 | `tag`            | The tag you want to search        | string | *        |
+
+List Available Kernels for a Droplet
+------------------------------------
+
+Get a list of the Linux kernels available for a Droplet.
+
+### Example
+
+```php
+<?php
+
+use \wappr\digitalocean\Droplets;
+use wappr\digitalocean\Requests\Droplets\ListAvailableKernelsDropletsRequest;
+
+include 'vendor/autoload.php';
+$resource = new Droplets;
+$response = $resource->listAvailableKernels(
+    new ListAvailableKernelsDropletsRequest('1234'/* droplet id */)
+);
+var_dump($response->getStatusCode()); // 200
+```
+
+### ListAvailableKernelsDropletsRequest properties
+
+| Name             | Description                       | Type   | Required |
+|------------------|-----------------------------------|--------|----------|
+| `droplet_id`     | The Droplet's ID                  | string | *        |
