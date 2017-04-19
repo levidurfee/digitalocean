@@ -283,3 +283,30 @@ var_dump($response->getStatusCode()); // 200
 | Name             | Description                       | Type   | Required |
 |------------------|-----------------------------------|--------|----------|
 | `droplet_id`     | The Droplet's ID                  | string | *        |
+
+Delete a Droplet
+----------------
+
+Permanently delete a Droplet. You can't undo this.
+
+### Example
+
+```php
+<?php
+
+use \wappr\digitalocean\Droplets;
+use wappr\digitalocean\Requests\Droplets\DeleteDropletsRequest;
+
+include 'vendor/autoload.php';
+$resource = new Droplets;
+$response = $resource->delete(
+    new DeleteDropletsRequest('1234'/* droplet id */)
+);
+var_dump($response->getStatusCode()); // 200
+```
+
+### DeleteDropletsRequest properties
+
+| Name             | Description                       | Type   | Required |
+|------------------|-----------------------------------|--------|----------|
+| `droplet_id`     | The Droplet's ID                  | string | *        |
