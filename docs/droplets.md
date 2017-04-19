@@ -256,3 +256,30 @@ var_dump($response->getStatusCode()); // 200
 | Name             | Description                       | Type   | Required |
 |------------------|-----------------------------------|--------|----------|
 | `droplet_id`     | The Droplet's ID                  | string | *        |
+
+List Actions performed on a Droplet
+-----------------------------------
+
+Retrieve a list of actions performed on a Droplet.
+
+### Example
+
+```php
+<?php
+
+use \wappr\digitalocean\Droplets;
+use wappr\digitalocean\Requests\Droplets\ListActionsDropletsRequest;
+
+include 'vendor/autoload.php';
+$resource = new Droplets;
+$response = $resource->listActions(
+    new ListActionsDropletsRequest('1234'/* droplet id */)
+);
+var_dump($response->getStatusCode()); // 200
+```
+
+### ListActionsDropletsRequest properties
+
+| Name             | Description                       | Type   | Required |
+|------------------|-----------------------------------|--------|----------|
+| `droplet_id`     | The Droplet's ID                  | string | *        |
