@@ -202,3 +202,30 @@ var_dump($response->getStatusCode()); // 200
 | Name             | Description                       | Type   | Required |
 |------------------|-----------------------------------|--------|----------|
 | `droplet_id`     | The Droplet's ID                  | string | *        |
+
+List Backups for a Droplet
+--------------------------
+
+Retrieve backups associated with a Droplet.
+
+### Example
+
+```php
+<?php
+
+use \wappr\digitalocean\Droplets;
+use wappr\digitalocean\Requests\Droplets\ListBackupsDropletRequest;
+
+include 'vendor/autoload.php';
+$resource = new Droplets;
+$response = $resource->listBackups(
+    new ListBackupsDropletRequest('1234'/* droplet id */)
+);
+var_dump($response->getStatusCode()); // 200
+```
+
+### ListBackupsDropletRequest properties
+
+| Name             | Description                       | Type   | Required |
+|------------------|-----------------------------------|--------|----------|
+| `droplet_id`     | The Droplet's ID                  | string | *        |
