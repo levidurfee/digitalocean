@@ -42,7 +42,6 @@ class DropletActionsTest extends \PHPUnit_Framework_TestCase
             'powerOff',
             'powerOn',
             'passwordReset',
-            //'resize', // @todo add test for this
             //'rebuild', // @todo add test for this
             //'rename', // @todo add test for this
             //'changeKernel', // @todo add test for this
@@ -70,6 +69,13 @@ class DropletActionsTest extends \PHPUnit_Framework_TestCase
     {
         $request = new DropletActionsRequest('1123');
         $result = $this->dropletActions->restore($request, '1234'/* image id */);
+        $this->assertInstanceOf(DropletActions::class, $result);
+    }
+
+    public function testResize()
+    {
+        $request = new DropletActionsRequest('1123');
+        $result = $this->dropletActions->resize($request, '1024mb'/* size */);
         $this->assertInstanceOf(DropletActions::class, $result);
     }
 }
