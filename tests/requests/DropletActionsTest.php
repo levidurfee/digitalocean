@@ -44,7 +44,6 @@ class DropletActionsTest extends \PHPUnit_Framework_TestCase
             'passwordReset',
             'enableIPv6',
             'enablePrivateNetworking',
-            //'retrieve', // @todo add test for this
         ];
 
         foreach ($methods as $method) {
@@ -101,5 +100,13 @@ class DropletActionsTest extends \PHPUnit_Framework_TestCase
         $request = new DropletActionsRequest('1234');
         $result = $this->dropletActions->snapshot($request, 'before_i_do_something_risky');
         $this->assertInstanceOf(DropletActions::class, $result);
+    }
+
+    public function testRetrieve()
+    {
+        $request = new DropletActionsRequest('1234');
+        $result = $this->dropletActions->retrieve($request, '12345678');
+        $this->assertEquals($result->getStatusCode(), 200);
+        $this->assertInstanceOf(Response::class, $result);
     }
 }
