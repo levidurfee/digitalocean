@@ -20,7 +20,7 @@ class ClientAdapter
     /**
      * @var string
      */
-    protected $version = '0.20.0';
+    protected $version = '0.21.0';
 
     /**
      * @var string
