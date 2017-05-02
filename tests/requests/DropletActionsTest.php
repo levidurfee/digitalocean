@@ -20,6 +20,17 @@ class DropletActionsTest extends \PHPUnit_Framework_TestCase
      */
     protected $dropletActions;
 
+    public function setUp()
+    {
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar']),
+            new Response(204, []),
+        ]);
+        $handler = HandlerStack::create($mock);
+        $this->client = new Client(['handler' => $handler]);
+        $this->dropletActions = new DropletActions($this->client);
+    }
+
     public function testSuccessfulRequests()
     {
         $methods = [
@@ -30,16 +41,9 @@ class DropletActionsTest extends \PHPUnit_Framework_TestCase
             'shutdown',
             'powerOff',
             'powerOn',
-            //'restore', // @todo add test for this
             'passwordReset',
-            //'resize', // @todo add test for this
-            //'rebuild', // @todo add test for this
-            //'rename', // @todo add test for this
-            //'changeKernel', // @todo add test for this
             'enableIPv6',
             'enablePrivateNetworking',
-            //'snapshot', // @todo add test for this
-            //'retrieve', // @todo add test for this
         ];
 
         foreach ($methods as $method) {
@@ -54,5 +58,55 @@ class DropletActionsTest extends \PHPUnit_Framework_TestCase
 
             $this->assertInstanceOf(DropletActions::class, $result);
         }
+    }
+
+    public function testRestore()
+    {
+        $request = new DropletActionsRequest('1123');
+        $result = $this->dropletActions->restore($request, '1234'/* image id */);
+        $this->assertInstanceOf(DropletActions::class, $result);
+    }
+
+    public function testResize()
+    {
+        $request = new DropletActionsRequest('1123');
+        $result = $this->dropletActions->resize($request, '1024mb'/* size */);
+        $this->assertInstanceOf(DropletActions::class, $result);
+    }
+
+    public function testRebuild()
+    {
+        $request = new DropletActionsRequest('1123');
+        $result = $this->dropletActions->rebuild($request, '1234'/* image id */);
+        $this->assertInstanceOf(DropletActions::class, $result);
+    }
+
+    public function testRename()
+    {
+        $request = new DropletActionsRequest('1234');
+        $result = $this->dropletActions->rename($request, 'new_name');
+        $this->assertInstanceOf(DropletActions::class, $result);
+    }
+
+    public function testChangeKernel()
+    {
+        $request = new DropletActionsRequest('1234');
+        $result = $this->dropletActions->changeKernel($request, '3.13.0-37-generic');
+        $this->assertInstanceOf(DropletActions::class, $result);
+    }
+
+    public function testSnapshot()
+    {
+        $request = new DropletActionsRequest('1234');
+        $result = $this->dropletActions->snapshot($request, 'before_i_do_something_risky');
+        $this->assertInstanceOf(DropletActions::class, $result);
+    }
+
+    public function testRetrieve()
+    {
+        $request = new DropletActionsRequest('1234');
+        $result = $this->dropletActions->retrieve($request, '12345678');
+        $this->assertEquals($result->getStatusCode(), 200);
+        $this->assertInstanceOf(Response::class, $result);
     }
 }
