@@ -42,7 +42,6 @@ class DropletActionsTest extends \PHPUnit_Framework_TestCase
             'powerOff',
             'powerOn',
             'passwordReset',
-            //'rename', // @todo add test for this
             //'changeKernel', // @todo add test for this
             'enableIPv6',
             'enablePrivateNetworking',
@@ -78,17 +77,22 @@ class DropletActionsTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf(DropletActions::class, $result);
     }
 
-    public function rebuild()
+    public function testRebuild()
     {
         $request = new DropletActionsRequest('1123');
         $result = $this->dropletActions->rebuild($request, '1234'/* image id */);
         $this->assertInstanceOf(DropletActions::class, $result);
     }
 
-    public function rename()
+    public function testRename()
     {
         $request = new DropletActionsRequest('1234');
         $result = $this->dropletActions->rename($request, 'new_name');
         $this->assertInstanceOf(DropletActions::class, $result);
+    }
+
+    public function changeKernel()
+    {
+
     }
 }
