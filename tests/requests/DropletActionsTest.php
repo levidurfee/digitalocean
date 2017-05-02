@@ -44,7 +44,6 @@ class DropletActionsTest extends \PHPUnit_Framework_TestCase
             'passwordReset',
             'enableIPv6',
             'enablePrivateNetworking',
-            //'snapshot', // @todo add test for this
             //'retrieve', // @todo add test for this
         ];
 
@@ -94,6 +93,13 @@ class DropletActionsTest extends \PHPUnit_Framework_TestCase
     {
         $request = new DropletActionsRequest('1234');
         $result = $this->dropletActions->changeKernel($request, '3.13.0-37-generic');
+        $this->assertInstanceOf(DropletActions::class, $result);
+    }
+
+    public function testSnapshot()
+    {
+        $request = new DropletActionsRequest('1234');
+        $result = $this->dropletActions->snapshot($request, 'before_i_do_something_risky');
         $this->assertInstanceOf(DropletActions::class, $result);
     }
 }
