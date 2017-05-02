@@ -84,4 +84,11 @@ class DropletActionsTest extends \PHPUnit_Framework_TestCase
         $result = $this->dropletActions->rebuild($request, '1234'/* image id */);
         $this->assertInstanceOf(DropletActions::class, $result);
     }
+
+    public function rename()
+    {
+        $request = new DropletActionsRequest('1234');
+        $result = $this->dropletActions->rename($request, 'new_name');
+        $this->assertInstanceOf(DropletActions::class, $result);
+    }
 }
