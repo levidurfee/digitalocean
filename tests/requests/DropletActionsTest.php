@@ -42,7 +42,6 @@ class DropletActionsTest extends \PHPUnit_Framework_TestCase
             'powerOff',
             'powerOn',
             'passwordReset',
-            //'changeKernel', // @todo add test for this
             'enableIPv6',
             'enablePrivateNetworking',
             //'snapshot', // @todo add test for this
@@ -91,8 +90,10 @@ class DropletActionsTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf(DropletActions::class, $result);
     }
 
-    public function changeKernel()
+    public function testChangeKernel()
     {
-
+        $request = new DropletActionsRequest('1234');
+        $result = $this->dropletActions->changeKernel($request, '3.13.0-37-generic');
+        $this->assertInstanceOf(DropletActions::class, $result);
     }
 }
