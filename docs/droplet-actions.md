@@ -40,7 +40,7 @@ Enable backups on the specified Droplet. This method is chainable.
 <?php
 
 use \wappr\digitalocean\DropletActions;
-use wappr\digitalocean\Requests\DropletActions\DropletActionsRequest;
+use \wappr\digitalocean\Requests\DropletActions\DropletActionsRequest;
 
 include 'vendor/autoload.php';
 $resource = new DropletActions;
