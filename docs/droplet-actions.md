@@ -138,7 +138,7 @@ $response = $resource->powerOff(new DropletActionsRequest('1234'));
 ```
 
 Power-On a Droplet
---------------------
+------------------
 
 Power-On the specified Droplet. This method is chainable.
 
@@ -153,4 +153,184 @@ use \wappr\digitalocean\Requests\DropletActions\DropletActionsRequest;
 include 'vendor/autoload.php';
 $resource = new DropletActions;
 $response = $resource->powerOn(new DropletActionsRequest('1234'));
+```
+
+Restore a Droplet
+-----------------
+
+Restore the specified Droplet. This method is chainable.
+
+### Example Usage
+
+```php
+<?php
+
+use \wappr\digitalocean\DropletActions;
+use \wappr\digitalocean\Requests\DropletActions\DropletActionsRequest;
+
+include 'vendor/autoload.php';
+$resource = new DropletActions;
+$response = $resource->restore(new DropletActionsRequest('1234'), 'image');
+```
+
+Reset the password
+------------------
+
+Reset the password for the specified Droplet. This method is chainable.
+
+### Example Usage
+
+```php
+<?php
+
+use \wappr\digitalocean\DropletActions;
+use \wappr\digitalocean\Requests\DropletActions\DropletActionsRequest;
+
+include 'vendor/autoload.php';
+$resource = new DropletActions;
+$response = $resource->passwordReset(new DropletActionsRequest('1234'));
+```
+
+Resize a Droplet
+----------------
+
+Resize the specified Droplet. This method is chainable.
+
+### Example Usage
+
+```php
+<?php
+
+use \wappr\digitalocean\DropletActions;
+use \wappr\digitalocean\Requests\DropletActions\DropletActionsRequest;
+
+include 'vendor/autoload.php';
+$resource = new DropletActions;
+$response = $resource->resize(new DropletActionsRequest('1234'), '512mb', true);
+```
+
+Rebuild a Droplet
+-----------------
+
+Rebuild the specified Droplet. This method is chainable.
+
+### Example Usage
+
+```php
+<?php
+
+use \wappr\digitalocean\DropletActions;
+use \wappr\digitalocean\Requests\DropletActions\DropletActionsRequest;
+
+include 'vendor/autoload.php';
+$resource = new DropletActions;
+$response = $resource->rebuild(new DropletActionsRequest('1234'), 'image');
+```
+
+Rename a Droplet
+----------------
+
+Rename the specified Droplet. This method is chainable.
+
+### Example Usage
+
+```php
+<?php
+
+use \wappr\digitalocean\DropletActions;
+use \wappr\digitalocean\Requests\DropletActions\DropletActionsRequest;
+
+include 'vendor/autoload.php';
+$resource = new DropletActions;
+$response = $resource->rename(new DropletActionsRequest('1234'), 'new_name');
+```
+
+Change Droplet's Kernel
+-----------------------
+
+Change Droplet's Kernel. This method is chainable.
+
+### Example Usage
+
+```php
+<?php
+
+use \wappr\digitalocean\DropletActions;
+use \wappr\digitalocean\Requests\DropletActions\DropletActionsRequest;
+
+include 'vendor/autoload.php';
+$resource = new DropletActions;
+$response = $resource->changeKernel(new DropletActionsRequest('1234'), '3.13.0-37-generic');
+```
+
+Enable IPv6 on a Droplet
+------------------------
+
+Enable IPv6 networking on a Droplet. This method is chainable.
+
+### Example Usage
+
+```php
+<?php
+
+use \wappr\digitalocean\DropletActions;
+use \wappr\digitalocean\Requests\DropletActions\DropletActionsRequest;
+
+include 'vendor/autoload.php';
+$resource = new DropletActions;
+$response = $resource->enableIPv6(new DropletActionsRequest('1234'));
+```
+
+Enable Private Networking
+-------------------------
+
+Enable Private Networking for the specified Droplet. This method is chainable.
+
+### Example Usage
+
+```php
+<?php
+
+use \wappr\digitalocean\DropletActions;
+use \wappr\digitalocean\Requests\DropletActions\DropletActionsRequest;
+
+include 'vendor/autoload.php';
+$resource = new DropletActions;
+$response = $resource->enablePrivateNetworking(new DropletActionsRequest('1234'));
+```
+
+Take a Snapshot
+---------------
+
+Take a Snapshot for the specified Droplet. This method is chainable.
+
+### Example Usage
+
+```php
+<?php
+
+use \wappr\digitalocean\DropletActions;
+use \wappr\digitalocean\Requests\DropletActions\DropletActionsRequest;
+
+include 'vendor/autoload.php';
+$resource = new DropletActions;
+$response = $resource->snapshot(new DropletActionsRequest('1234'), 'just_in_case');
+```
+
+Retrieve an Action
+------------------
+
+Retrieve an action for the specified Droplet.
+
+### Example Usage
+
+```php
+<?php
+
+use \wappr\digitalocean\DropletActions;
+use \wappr\digitalocean\Requests\DropletActions\DropletActionsRequest;
+
+include 'vendor/autoload.php';
+$resource = new DropletActions;
+$response = $resource->retrieve(new DropletActionsRequest('1234'), '12341234');
 ```
