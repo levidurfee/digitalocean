@@ -24,7 +24,9 @@ class DropletActionsTest extends \PHPUnit_Framework_TestCase
     {
         $mock = new MockHandler([
             new Response(200, ['X-Foo' => 'Bar']),
-            new Response(204, []),
+            new Response(200, []),
+            new Response(200, []),
+            new Response(200, []),
         ]);
         $handler = HandlerStack::create($mock);
         $this->client = new Client(['handler' => $handler]);
@@ -108,5 +110,14 @@ class DropletActionsTest extends \PHPUnit_Framework_TestCase
         $result = $this->dropletActions->retrieve($request, '12345678');
         $this->assertEquals($result->getStatusCode(), 200);
         $this->assertInstanceOf(Response::class, $result);
+    }
+
+    public function testMethodChaining()
+    {
+        $request = new DropletActionsRequest('1234');
+        $result = $this->dropletActions->enableBackups($request)
+                                        ->reboot($request)
+                                        ->enableIPv6($request);
+        $this->assertInstanceOf(DropletActions::class, $result);
     }
 }
