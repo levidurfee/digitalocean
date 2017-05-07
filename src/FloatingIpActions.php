@@ -24,8 +24,20 @@ class FloatingIpActions extends Resources
         );
     }
 
-    public function unassign()
+    /**
+     * Unassign a Floating IP.
+     *
+     * @param FloatingIpActionsRequest $floatingIpActionsRequest
+     * @param $floatingIp
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
+    public function unassign(FloatingIpActionsRequest $floatingIpActionsRequest, $floatingIp)
     {
+        return $this->clientAdapter->get(
+            $this->endpoint.'/'.$floatingIp.'/actions',
+            $floatingIpActionsRequest
+        );
     }
 
     public function listAll()
