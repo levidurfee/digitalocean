@@ -2,26 +2,37 @@
 
 namespace wappr\digitalocean;
 
-use wappr\digitalocean\Requests\FloatingIpActions\AssignFloatingIpToDropletRequest;
-use wappr\digitalocean\Requests\FloatingIpActions\ListAllFloatingIpActionsRequest;
-use wappr\digitalocean\Requests\FloatingIpActions\RetrieveFloatingIpActionRequest;
-use wappr\digitalocean\Requests\FloatingIpActions\UnassignFloatingIpRequest;
+use wappr\digitalocean\Requests\FloatingIpActions\FloatingIpActionsRequest;
 
 class FloatingIpActions extends Resources
 {
-    public function assign(AssignFloatingIpToDropletRequest $assignFloatingIpToDropletRequest)
+    private $endpoint = 'floating_ips';
+
+    /**
+     * Assign a Floating IP to a Droplet.
+     *
+     * @param FloatingIpActionsRequest $floatingIpActionsRequest
+     * @param $floatingIp
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     */
+    public function assign(FloatingIpActionsRequest $floatingIpActionsRequest, $floatingIp)
+    {
+        return $this->clientAdapter->get(
+            $this->endpoint.'/'.$floatingIp.'/actions',
+            $floatingIpActionsRequest
+        );
+    }
+
+    public function unassign()
     {
     }
 
-    public function unassign(UnassignFloatingIpRequest $unassignFloatingIpRequest)
+    public function listAll()
     {
     }
 
-    public function listAll(ListAllFloatingIpActionsRequest $listAllFloatingIpActionsRequest)
-    {
-    }
-
-    public function retrieve(RetrieveFloatingIpActionRequest $retrieveFloatingIpActionRequest)
+    public function retrieve()
     {
     }
 }
